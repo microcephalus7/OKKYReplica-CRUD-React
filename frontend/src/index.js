@@ -1,13 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.scss";
-import Root from "./Root";
+import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { BrowserRouter } from "react-router-dom";
+import styled, { css } from "styled-components";
+import "./index.scss";
+const IndexWrapper = styled.body`
+  margin: 0;
+  padding: 0;
+`;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </BrowserRouter>,
+
   document.getElementById("root")
 );
 

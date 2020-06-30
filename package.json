@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "qs": "^6.9.4",
+    "styled-components": "^5.1.1"
+  }
+}
