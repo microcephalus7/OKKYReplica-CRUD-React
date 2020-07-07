@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Main from "../pages/Main";
-import Detail from "../pages/Detail";
-import Updating from "../pages/Updating";
-import Writing from "../pages/Writing";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import React from "react";
+
+import styled from "styled-components";
+
 import { MdSearch } from "react-icons/md";
-import axios from "axios";
-import { NavLink } from "react-router-dom";
 
 const SideNavWrapper = styled.div`
   position: fixed;
@@ -16,16 +11,16 @@ const SideNavWrapper = styled.div`
   bottom: 0;
   z-index: 1000;
   height: 100%;
-  width: 25%;
+  width: 220px;
   background: rgb(0, 89, 171);
   color: white;
   display: flex;
   padding: 0 10px;
   flex-direction: column;
   align-items: center;
+  padding: 0 10px;
+
   ul {
-    padding: 0;
-    margin: 0;
   }
 `;
 
@@ -41,31 +36,38 @@ const Search = styled.div`
   align-items: center;
   input {
     padding: 5px;
-    height: 25px;
-    width: 70%;
+    height: 30px;
+    width: 140px;
+    &::placeholder {
+      color: gray;
+      opacity: 0.5;
+    }
   }
   button {
+    padding: 5px;
+    height: 30px;
+    width: 30px;
     background: none;
     outline: none;
     border: none;
     background: white;
     color: black;
     font-size: 1.2rem;
-
     cursor: pointer;
     transition: 0.1s background ease-in;
   }
 `;
-const Category = styled(NavLink)`
-  li {
-    color: white;
-  }
+const Profile = styled.ul``;
+const CateList = styled.ul`
+  padding: 0;
+  margin: 0;
 `;
-const SideNav = ({ community, loading }) => {
+
+const SideNav = ({ categories, loading }) => {
   if (loading) {
     return <SideNavWrapper>로딩 중</SideNavWrapper>;
   }
-  if (!community) {
+  if (!categories) {
     return null;
   }
 
@@ -78,11 +80,12 @@ const SideNav = ({ community, loading }) => {
           <MdSearch />
         </button>
       </Search>
-      <ul>
-        {community.map((category) => (
-          <li key={category.categoryName}>{category.categoryName}</li>
+
+      <CateList>
+        {categories.map((category) => (
+          <li key={category}>{category}</li>
         ))}
-      </ul>
+      </CateList>
     </SideNavWrapper>
   );
 };

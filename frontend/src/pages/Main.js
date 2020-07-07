@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const MainWrapper = styled.div`
   display: block;
@@ -10,19 +10,19 @@ const MainInner = styled.div`
   margin-left: 10%;
 `;
 
-const Main = ({ community, loading }) => {
+const Main = ({ articles, loading, categories }) => {
   if (loading) {
     return <MainWrapper>로딩 중</MainWrapper>;
   }
-  if (!community) {
+  if (!articles) {
     return null;
   }
 
   return (
     <MainWrapper>
       <MainInner>
-        {community.map((category) => (
-          <div key={category.categoryName}>{category.articles.title}</div>
+        {articles.map((article) => (
+          <div key={article.no}>{article.title}</div>
         ))}
       </MainInner>
     </MainWrapper>

@@ -1,64 +1,73 @@
 {
-  "community": [
+  "categories": ["Free", "QNA", "Tech", "Jobs"],
+  "articles": [
     {
-      "categoryName": "free",
-      "articles": [
+      "category": "Free",
+      "no": 1,
+      "id": "hou",
+      "title": "자유 제목",
+      "descibe": "자유 내용",
+      "comment": [
         {
           "no": 1,
           "id": "hou",
-          "title": "자유 제목",
-          "descibe": "자유 내용",
-          "comment": [
-            {
-              "no": 1,
-              "id": "hou",
-              "descibe": "내용"
-            }
-          ]
-        },
-        {
-          "no": 2,
-          "id": "hou",
-          "title": "자유 제목2",
-          "descibe": "자유 내용2",
-          "comment": [
-            {
-              "no": 1,
-              "id": "hou",
-              "descibe": "내용"
-            }
-          ]
+          "descibe": "내용"
         }
       ]
     },
     {
-      "categoryName": "qna",
-      "articles": [
+      "category": "Free",
+      "no": 2,
+      "id": "hou",
+      "title": "자유 제목2",
+      "descibe": "자유 내용2",
+      "comment": [
         {
           "no": 1,
           "id": "hou",
-          "title": "qna 제목",
-          "descibe": "qna 내용",
-          "comment": [
-            {
-              "no": 1,
-              "id": "hou",
-              "descibe": "내용"
-            }
-          ]
-        },
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "QNA",
+      "no": 3,
+      "id": "hou",
+      "title": "qna 제목",
+      "descibe": "qna 내용",
+      "comment": [
         {
-          "no": 2,
+          "no": 1,
           "id": "hou",
-          "title": "qna 제목2",
-          "descibe": "qna 내용2",
-          "comment": [
-            {
-              "no": 1,
-              "id": "hou",
-              "descibe": "내용"
-            }
-          ]
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "QNA",
+      "no": 4,
+      "id": "hou",
+      "title": "qna 제목2",
+      "descibe": "qna 내용2",
+      "comment": [
+        {
+          "no": 1,
+          "id": "hou",
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "Jobs",
+      "no": 5,
+      "id": "hou",
+      "title": "qna 제목2",
+      "descibe": "qna 내용2",
+      "comment": [
+        {
+          "no": 1,
+          "id": "hou",
+          "descibe": "내용"
         }
       ]
     }
