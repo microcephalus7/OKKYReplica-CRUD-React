@@ -45,8 +45,8 @@ const Search = styled.div`
   }
   button {
     padding: 5px;
-    height: 30px;
-    width: 30px;
+    height: 29px;
+    width: 35px;
     background: none;
     outline: none;
     border: none;
@@ -57,7 +57,7 @@ const Search = styled.div`
     transition: 0.1s background ease-in;
   }
 `;
-const Profile = styled.ul``;
+
 const CateList = styled.ul`
   padding: 0;
   margin: 0;

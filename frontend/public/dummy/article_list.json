@@ -61,8 +61,22 @@
       "category": "Jobs",
       "no": 5,
       "id": "hou",
-      "title": "qna 제목2",
-      "descibe": "qna 내용2",
+      "title": "Jobs",
+      "descibe": "Jobs 내용",
+      "comment": [
+        {
+          "no": 1,
+          "id": "hou",
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "Tech",
+      "no": 6,
+      "id": "hou",
+      "title": "Tech",
+      "descibe": "Tech 내용",
       "comment": [
         {
           "no": 1,

@@ -5,10 +5,6 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import styled, { css } from "styled-components";
 import "./index.scss";
-const IndexWrapper = styled.body`
-  margin: 0;
-  padding: 0;
-`;
 
 ReactDOM.render(
   <BrowserRouter>
