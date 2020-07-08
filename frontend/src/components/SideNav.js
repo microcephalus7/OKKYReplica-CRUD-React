@@ -2,7 +2,12 @@ import React from "react";
 
 import styled from "styled-components";
 
-import { MdSearch } from "react-icons/md";
+import {
+  MdSearch,
+  MdList,
+  MdPermIdentity,
+  MdPowerSettingsNew,
+} from "react-icons/md";
 
 const SideNavWrapper = styled.div`
   position: fixed;
@@ -15,13 +20,8 @@ const SideNavWrapper = styled.div`
   background: rgb(0, 89, 171);
   color: white;
   display: flex;
-  padding: 0 10px;
   flex-direction: column;
   align-items: center;
-  padding: 0 10px;
-
-  ul {
-  }
 `;
 
 const Logo = styled.a`
@@ -57,10 +57,34 @@ const Search = styled.div`
     transition: 0.1s background ease-in;
   }
 `;
-
-const CateList = styled.ul`
-  padding: 0;
-  margin: 0;
+const ProfileWrapper = styled.div`
+  display: flex;
+  margin: 20px 0px;
+  width: 100%;
+  height: 35px;
+`;
+const ProfileInner = styled.div`
+  font-size: 0.8rem;
+  width: 50%;
+  border: #00519c solid 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const CateList = styled.div`
+  margin-top: 120px;
+  width: 100%;
+  div {
+    padding: 0 20px;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    span {
+      margin-left: 30px;
+    }
+  }
 `;
 
 const SideNav = ({ categories, loading }) => {
@@ -80,10 +104,20 @@ const SideNav = ({ categories, loading }) => {
           <MdSearch />
         </button>
       </Search>
-
+      <ProfileWrapper>
+        <ProfileInner>
+          <MdPowerSettingsNew /> <span>로그인</span>
+        </ProfileInner>
+        <ProfileInner>
+          <MdPermIdentity /> <span>회원가입</span>
+        </ProfileInner>
+      </ProfileWrapper>
       <CateList>
         {categories.map((category) => (
-          <li key={category}>{category}</li>
+          <div key={category}>
+            <MdList />
+            <span>{category}</span>
+          </div>
         ))}
       </CateList>
     </SideNavWrapper>
