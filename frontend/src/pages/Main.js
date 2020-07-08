@@ -61,37 +61,24 @@ const Main = ({ articles, loading, categories }) => {
   return (
     <MainWrapper>
       <MainInner>
-        <MainBoardOuter>
-          <MainBoardTitle>
-            <MdFlag className="icon" />
-            <span>자유게시판</span>
-          </MainBoardTitle>
-          <MainBoardInner>
-            <li>
-              <span className="boardTitle">자유 제목 1</span>
-              <span className="boardWriter">호우</span>
-            </li>
-            <li>
-              <span className="boardTitle">자유 제목 1</span>
-              <span className="boardWriter">호우</span>
-            </li>
-          </MainBoardInner>
-        </MainBoardOuter>
-        <MainBoardOuter>
-          <MainBoardTitle>
-            <MdFlag className="icon" /> <span>자유게시판</span>
-          </MainBoardTitle>
-          <MainBoardInner>
-            <li>
-              <span className="boardTitle">자유 제목 1</span>
-              <span className="boardWriter">호우</span>
-            </li>
-            <li>
-              <span className="boardTitle">자유 제목 1</span>
-              <span className="boardWriter">호우</span>
-            </li>
-          </MainBoardInner>
-        </MainBoardOuter>
+        {categories.map((category) => (
+          <MainBoardOuter>
+            <MainBoardTitle>
+              <MdFlag className="icon" />
+              <span>{category}</span>
+            </MainBoardTitle>
+            <MainBoardInner>
+              {articles.map((article) =>
+                article.category === category ? (
+                  <li>
+                    <span className="boardTitle">{article.title}</span>
+                    <span className="boardWriter">{article.id}</span>
+                  </li>
+                ) : null
+              )}
+            </MainBoardInner>
+          </MainBoardOuter>
+        ))}
       </MainInner>
     </MainWrapper>
   );
