@@ -8,6 +8,7 @@ import {
   MdPermIdentity,
   MdPowerSettingsNew,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const SideNavWrapper = styled.div`
   position: fixed;
@@ -81,8 +82,13 @@ const CateList = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
     span {
       margin-left: 30px;
+      a {
+        text-decoration: none;
+        color: white;
+      }
     }
   }
 `;
@@ -116,7 +122,9 @@ const SideNav = ({ categories, loading }) => {
         {categories.map((category) => (
           <div key={category}>
             <MdList />
-            <span>{category}</span>
+            <span>
+              <Link>{category}</Link>
+            </span>
           </div>
         ))}
       </CateList>

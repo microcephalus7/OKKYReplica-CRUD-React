@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import SideNav from "./components/SideNav";
 import Template from "./components/Template";
 import { Route } from "react-router-dom";
-import Main from "./pages/Main";
+import { Main, Detail, Updating, Writing, Board } from "./pages";
 import axios from "axios";
 
 const App = () => {
@@ -26,13 +26,14 @@ const App = () => {
   return (
     <Template>
       <SideNav categories={community.categories} loading={loading}></SideNav>
-      <Route path="/" component={Main} exact={true} />
+      <Route path="/" component={Main} exact />
       <Main
         categories={community.categories}
         articles={community.articles}
         loading={loading}
       ></Main>
-      <Route></Route>
+      <Route path="/detail/" component={Detail} exact />
+      <Route path="/category/" component={Board} exact />
     </Template>
   );
 };

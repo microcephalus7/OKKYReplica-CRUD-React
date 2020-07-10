@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { MdFlag } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const MainWrapper = styled.div`
   display: block;
@@ -17,15 +18,20 @@ const MainBoardOuter = styled.div`
   width: 350px;
   height: auto;
   margin: 20px 10px;
-
   color: #2a6496;
 `;
 const MainBoardTitle = styled.div`
   margin-top: 10px;
   display: flex;
   align-items: center;
+
   span {
     font-size: 0.8rem;
+    text-decoration: none;
+    a {
+      color: #2a6496;
+      text-decoration: none;
+    }
   }
 `;
 const MainBoardInner = styled.ul`
@@ -33,7 +39,6 @@ const MainBoardInner = styled.ul`
   border: #dddddd solid 0.2px;
   border-collapse: collapse;
   background: #ffffff;
-
   li {
     display: flex;
     align-items: center;
@@ -65,7 +70,9 @@ const Main = ({ articles, loading, categories }) => {
           <MainBoardOuter>
             <MainBoardTitle>
               <MdFlag className="icon" />
-              <span>{category}</span>
+              <span>
+                <Link>{category}</Link>
+              </span>
             </MainBoardTitle>
             <MainBoardInner>
               {articles.map((article) =>
