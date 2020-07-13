@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MdEdit, MdChatBubble, MdFace } from "react-icons/md";
 const BoardWrapper = styled.div`
+  display: block;
   margin: 30px 20px;
   width: 700px;
   height: auto;

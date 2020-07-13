@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MdEdit, MdChatBubble, MdFace } from "react-icons/md";
 
 const DetailWrapper = styled.div`
+  display: block;
   margin: 30px 20px;
   width: 700px;
   height: auto;

@@ -34,6 +34,7 @@ const App = () => {
       ></Main>
       <Route path="/detail/" component={Detail} exact />
       <Route path="/category/" component={Board} exact />
+      <Route path="/updating/" component={Updating} exact />
     </Template>
   );
 };
