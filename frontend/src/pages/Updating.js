@@ -7,8 +7,10 @@ const UpdatingWrapper = styled.div`
   margin: 30px 20px;
   width: 700px;
   height: auto;
-
+  font-size: 1.3rem;
+  font-weight: 500;
   .updatingInner {
+    margin-top: 20px;
     background: #ffffff;
     height: auto;
     border: #dddddd solid 0.3px;
@@ -41,6 +43,11 @@ const UpdatingWrapper = styled.div`
       padding: 30px 50px;
       display: flex;
       flex-direction: column;
+      select {
+        border: #dddddd solid 0.3px;
+        height: 30px;
+        margin-bottom: 10px;
+      }
 
       input {
         border: #dddddd solid 0.3px;
@@ -85,7 +92,6 @@ const UpdatingWrapper = styled.div`
 const Updating = () => {
   return (
     <UpdatingWrapper>
-      <div className="updatingTitle">새 글 쓰기</div>
       <div className="updatingInner">
         <div className="UpdatingProfile">
           <MdFace />
@@ -95,11 +101,17 @@ const Updating = () => {
           </div>
         </div>
         <div className="updatingTextfield">
-          <input placeholder="제목을 입력해 주세요" />
-          <textarea />
+          <select>
+            <option>자유</option>
+            <option>QnA</option>
+            <option>Tech</option>
+            <option>Jobs</option>
+          </select>
+          <input placeholder="제목을 입력해 주세요" value="제목" />
+          <textarea value="내용" />
           <div className="updatingButtons">
             <button className="cancel">취소</button>
-            <button className="submit">create</button>
+            <button className="submit">update</button>
           </div>
         </div>
       </div>
