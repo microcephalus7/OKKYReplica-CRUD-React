@@ -1,7 +1,6 @@
 import React from "react";
-
 import styled from "styled-components";
-
+import palette from "../lib/styles/palette";
 import {
   MdSearch,
   MdList,
@@ -18,76 +17,77 @@ const SideNavWrapper = styled.div`
   z-index: 1000;
   height: 100%;
   width: 220px;
-  background: rgb(0, 89, 171);
+  background: ${palette.blue[0]};
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const Logo = styled.a`
-  font-size: 2rem;
-  margin: 5px auto;
-`;
-
-const Search = styled.div`
-  margin-top: 10px;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  input {
-    padding: 5px;
-    height: 30px;
-    width: 140px;
-    &::placeholder {
-      color: gray;
-      opacity: 0.5;
+  .logo {
+    color: white;
+    font-size: 2rem;
+    margin: 5px auto;
+    text-decoration: none;
+  }
+  .search {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    vertical-align: center;
+    input {
+      padding: 5px;
+      height: 30px;
+      width: 140px;
+      &::placeholder {
+        color: ${palette.gray[0]};
+        opacity: 0.5;
+      }
+    }
+    button {
+      padding: 5px;
+      height: 29px;
+      width: 35px;
+      background: none;
+      outline: none;
+      border: none;
+      background: ${palette.white[0]};
+      color: black;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.1s background ease-in;
     }
   }
-  button {
-    padding: 5px;
-    height: 29px;
-    width: 35px;
-    background: none;
-    outline: none;
-    border: none;
-    background: white;
-    color: black;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.1s background ease-in;
-  }
-`;
-const ProfileWrapper = styled.div`
-  display: flex;
-  margin: 20px 0px;
-  width: 100%;
-  height: 35px;
-`;
-const ProfileInner = styled.div`
-  font-size: 0.8rem;
-  width: 50%;
-  border: #00519c solid 1px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const CateList = styled.div`
-  margin-top: 120px;
-  width: 100%;
-  div {
-    padding: 0 20px;
-    height: 50px;
-    width: 100%;
+  .profile {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    margin: 20px 0px;
+    width: 100%;
+    height: 35px;
+    .profileInner {
+      font-size: 0.8rem;
+      width: 50%;
+      border: ${palette.blue[1]} solid 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .cateList {
+    margin-top: 120px;
+    width: 100%;
+    div {
+      padding: 0 20px;
+      height: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
 
-    span {
-      margin-left: 30px;
-      a {
-        text-decoration: none;
-        color: white;
+      span {
+        margin-left: 30px;
+        a {
+          text-decoration: none;
+          color: white;
+        }
       }
     }
   }
@@ -103,22 +103,22 @@ const SideNav = ({ categories, loading }) => {
 
   return (
     <SideNavWrapper>
-      <Logo>옼끼</Logo>
-      <Search>
+      <Link className="logo">옼끼</Link>
+      <div className="search">
         <input placeholder="Google 검색" />
         <button>
           <MdSearch />
         </button>
-      </Search>
-      <ProfileWrapper>
-        <ProfileInner>
+      </div>
+      <div className="profile">
+        <div className="profileInner">
           <MdPowerSettingsNew /> <span>로그인</span>
-        </ProfileInner>
-        <ProfileInner>
+        </div>
+        <div className="profileInner">
           <MdPermIdentity /> <span>회원가입</span>
-        </ProfileInner>
-      </ProfileWrapper>
-      <CateList>
+        </div>
+      </div>
+      <div className="cateList">
         {categories.map((category) => (
           <div key={category}>
             <MdList />
@@ -127,7 +127,7 @@ const SideNav = ({ categories, loading }) => {
             </span>
           </div>
         ))}
-      </CateList>
+      </div>
     </SideNavWrapper>
   );
 };
