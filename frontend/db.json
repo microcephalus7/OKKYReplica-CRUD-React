@@ -1,0 +1,85 @@
+{
+  "categories": ["Free", "QNA", "Tech", "Jobs"],
+  "articles": [
+    {
+      "category": "Free",
+      "userId": "hou123",
+      "username": "hou",
+      "id": "1",
+      "title": "자유 제목",
+      "descibe": "자유 내용",
+      "comment": [
+        {
+          "no": 1,
+          "username": "hou",
+          "id": "1",
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "Free",
+      "userId": "hou123",
+      "username": "hou",
+      "id": "1",
+      "title": "자유 제목",
+      "descibe": "자유 내용",
+      "comment": [
+        {
+          "no": 1,
+          "username": "hou",
+          "id": "1",
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "Free",
+      "userId": "hou123",
+      "username": "hou",
+      "id": "1",
+      "title": "자유 제목",
+      "descibe": "자유 내용",
+      "comment": [
+        {
+          "no": 1,
+          "username": "hou",
+          "id": "1",
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "Free",
+      "userId": "hou123",
+      "username": "hou",
+      "id": "1",
+      "title": "자유 제목",
+      "descibe": "자유 내용",
+      "comment": [
+        {
+          "no": 1,
+          "username": "hou",
+          "id": "1",
+          "descibe": "내용"
+        }
+      ]
+    },
+    {
+      "category": "Free",
+      "userId": "hou123",
+      "username": "hou",
+      "id": "1",
+      "title": "자유 제목",
+      "descibe": "자유 내용",
+      "comment": [
+        {
+          "no": 1,
+          "username": "hou",
+          "id": "1",
+          "descibe": "내용"
+        }
+      ]
+    }
+  ]
+}

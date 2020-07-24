@@ -1,42 +1,22 @@
-import React, { useState, useEffect } from "react";
-import SideNav from "./components/SideNav";
-import Template from "./components/Template";
+import React from "react";
 import { Route } from "react-router-dom";
-import { Main, Detail, Updating, Writing, Board } from "./pages";
-import axios from "axios";
+import MainPage from "./pages/MainPage";
+import BoardPage from "./pages/BoardPage";
+import DetailPage from "./pages/DetailPage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import WritingPage from "./pages/WritingPage";
 
 const App = () => {
-  const [community, setCommunity] = useState({ categories: "", articles: "" });
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get("dummy/article_list.json");
-        setCommunity(response.data);
-      } catch (e) {
-        console.log(e);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
   return (
-    <Template>
-      <SideNav categories={community.categories} loading={loading}></SideNav>
-      <Route path="/" component={Main} exact />
-      <Main
-        categories={community.categories}
-        articles={community.articles}
-        loading={loading}
-      ></Main>
-      <Route path="/detail/" component={Detail} exact />
-      <Route path="/category/" component={Board} exact />
-      <Route path="/writing" component={Writing} exact />
-      <Route path="/updating/" component={Updating} exact />
-    </Template>
+    <>
+      <Route path="/" component={MainPage} exact />
+      <Route path="/@:username/:postId" component={DetailPage} exact />
+      <Route path="/:category" component={BoardPage} exact />
+      <Route path="/writing" component={WritingPage} exact />
+      <Route path="/login" component={LoginPage} exact />
+      <Route path="/register" component={RegisterPage} exact />
+    </>
   );
 };
 

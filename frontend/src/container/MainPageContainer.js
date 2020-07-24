@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import SideNav from "../components/common/SideNav";
+import Board from "../components/Main/Board";
 import axios from "axios";
 
-const App = () => {
+const MainPageContainer = () => {
   const [categories, setCategories] = useState(null);
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -21,8 +22,12 @@ const App = () => {
     };
     fetchData();
   }, []);
-
-  return <div></div>;
+  return (
+    <>
+      <SideNav loading={loading} categories={categories} />
+      <Board loading={loading} categories={categories} articles={articles} />
+    </>
+  );
 };
 
-export default App;
+export default MainPageContainer;

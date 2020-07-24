@@ -1,27 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import { MdFlag } from "react-icons/md";
-import { Link } from "react-router-dom";
-import palette from "../lib/styles/palette";
+import palette from "../../lib/styles/palette";
 
-const MainWrapper = styled.div`
+const BoardWrapper = styled.div`
   display: block;
   margin-left: 220px;
   width: 400px;
 `;
-const MainInner = styled.div`
+const BoardLayer = styled.div`
   margin-top: 50px;
   margin-left: 20px;
   display: grid;
   grid-template-columns: auto auto;
 `;
-const MainBoardOuter = styled.div`
+const BoardOuter = styled.div`
   width: 350px;
   height: auto;
   margin: 20px 10px;
   color: ${palette.gray[0]};
 `;
-const MainBoardTitle = styled.div`
+const BoardTitle = styled.div`
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -35,7 +34,7 @@ const MainBoardTitle = styled.div`
     }
   }
 `;
-const MainBoardInner = styled.ul`
+const BoardInner = styled.ul`
   margin-top: 10px;
   border: #dddddd solid 0.2px;
   border-collapse: collapse;
@@ -56,26 +55,23 @@ const MainBoardInner = styled.ul`
   }
 `;
 
-const Main = ({ articles, loading, categories }) => {
+const Board = ({ articles, loading, categories }) => {
   if (loading) {
-    return <MainWrapper>로딩 중</MainWrapper>;
+    return <BoardWrapper>로딩 중</BoardWrapper>;
   }
   if (!articles) {
     return null;
   }
-
   return (
-    <MainWrapper>
-      <MainInner>
+    <BoardWrapper>
+      <BoardLayer>
         {categories.map((category) => (
-          <MainBoardOuter>
-            <MainBoardTitle>
+          <BoardOuter>
+            <BoardTitle>
               <MdFlag className="icon" />
-              <span>
-                <Link>{category}</Link>
-              </span>
-            </MainBoardTitle>
-            <MainBoardInner>
+              <span>{category}</span>
+            </BoardTitle>
+            <BoardInner>
               {articles.map((article) =>
                 article.category === category ? (
                   <li>
@@ -84,12 +80,12 @@ const Main = ({ articles, loading, categories }) => {
                   </li>
                 ) : null
               )}
-            </MainBoardInner>
-          </MainBoardOuter>
+            </BoardInner>
+          </BoardOuter>
         ))}
-      </MainInner>
-    </MainWrapper>
+      </BoardLayer>
+    </BoardWrapper>
   );
 };
 
-export default Main;
+export default Board;
