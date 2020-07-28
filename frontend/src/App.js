@@ -11,11 +11,11 @@ const App = () => {
   return (
     <>
       <Route path="/" component={MainPage} exact />
-      <Route path="/@:username/:postId" component={DetailPage} exact />
-      <Route path="/:category" component={BoardPage} exact />
-      <Route path="/writing" component={WritingPage} exact />
-      <Route path="/login" component={LoginPage} exact />
-      <Route path="/register" component={RegisterPage} exact />
+      <Route path="/:postId" component={DetailPage} />
+      <Route path="/category" component={BoardPage} />
+      <Route path="/writing" component={WritingPage} />
+      <Route path="/login" component={LoginPage} />
+      <Route path="/register" component={RegisterPage} />
     </>
   );
 };

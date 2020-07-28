@@ -1,8 +1,14 @@
 import React from "react";
-import MainPageContainer from "../container/MainPageContainer";
+import SideNavContainer from "../container/common/SideNavContainer";
+import BoardContainer from "../container/main/BoardContainer";
 
 const MainPage = () => {
-  return <MainPageContainer />;
+  return (
+    <>
+      <SideNavContainer />
+      <BoardContainer />
+    </>
+  );
 };
 
 export default MainPage;

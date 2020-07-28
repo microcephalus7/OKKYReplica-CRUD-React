@@ -76,7 +76,7 @@ const Board = ({ articles, loading, categories }) => {
                 article.category === category ? (
                   <li>
                     <span className="boardTitle">{article.title}</span>
-                    <span className="boardWriter">{article.id}</span>
+                    <span className="boardWriter">{article.username}</span>
                   </li>
                 ) : null
               )}
