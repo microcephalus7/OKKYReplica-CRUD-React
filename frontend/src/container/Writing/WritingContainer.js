@@ -8,10 +8,11 @@ const WritingContainer = ({ history }) => {
   const [article, setArticle] = useState({
     title: "",
     body: "",
-    category: "",
+    category: "Free",
+    comment: null,
   });
   const [categories, setCategories] = useState(null);
-  const { title, body, category } = article;
+  const { title, body, category, comment } = article;
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -32,10 +33,14 @@ const WritingContainer = ({ history }) => {
     setArticle(nextState);
   };
   const handleSubmit = () => {
+    if (!title || !body || !category) {
+      alert("빈 부분을 채워주세요!");
+      return null;
+    }
     const fetchData = async () => {
       setLoading(true);
       try {
-        Axios.post(`/articles`, { title, body, category });
+        Axios.post(`/articles`, { title, body, category, comment });
       } catch (e) {
         console.log(e);
       }
@@ -44,6 +49,7 @@ const WritingContainer = ({ history }) => {
     fetchData();
     history.push("/");
   };
+
   return (
     <Writing
       title={title}

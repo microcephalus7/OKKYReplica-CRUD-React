@@ -129,7 +129,9 @@ const Writing = ({
           <textarea name="body" value={body} onChange={handleChange} />
           <div className="updatingButtons">
             <button className="cancel">취소</button>
-            <button className="submit">create</button>
+            <button className="submit" onClick={handleSubmit}>
+              create
+            </button>
           </div>
         </div>
       </div>

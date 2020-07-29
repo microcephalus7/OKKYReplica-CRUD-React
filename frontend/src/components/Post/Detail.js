@@ -215,7 +215,8 @@ const Detail = ({ article, loading }) => {
             <span className="date">2020/07/10</span>
           </div>
           <div className="boardInfo">
-            <MdChatBubble /> <span>{article.comment.length}</span>
+            <MdChatBubble />{" "}
+            <span>{!article.comment ? 0 : article.comment.length}</span>
           </div>
         </div>
         <div className="boardInner">
@@ -227,14 +228,20 @@ const Detail = ({ article, loading }) => {
         </div>
       </div>
       <div className="boardComment">
-        <div className="commentCount">댓글 {article.comment.length}</div>
+        <div className="commentCount">
+          댓글 {!article.comment ? 0 : article.comment.length}
+        </div>
         <div className="commentList">
-          {article.comment.map((com) => (
-            <>
-              <Profile username={com.username} />
-              <div className="commentBody">{com.body}</div>
-            </>
-          ))}
+          {!article.comment ? (
+            <div className="commentBody"> 댓글이 없습니다.</div>
+          ) : (
+            article.comment.map((com) => (
+              <>
+                <Profile username={com.username} />
+                <div className="commentBody">{com.body}</div>
+              </>
+            ))
+          )}
         </div>
         <div className="commentWriting">
           <div className="WritingWrapper">
