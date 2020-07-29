@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MdFlag } from "react-icons/md";
 import palette from "../../lib/styles/palette";
+import { Link } from "react-router-dom";
 
 const BoardWrapper = styled.div`
   display: block;
@@ -49,6 +50,10 @@ const BoardInner = styled.ul`
     border-top: #dddddd solid 0.2px;
     border-left: #2a6496 solid 2px;
     padding: 0 10px;
+    color: #2a6496;
+    a {
+      color: #2a6496;
+    }
     .boardTitle {
       flex: 1;
     }
@@ -74,8 +79,10 @@ const Board = ({ articles, loading, categories }) => {
             <BoardInner>
               {articles.map((article) =>
                 article.category === category ? (
-                  <li>
-                    <span className="boardTitle">{article.title}</span>
+                  <li key={article.id}>
+                    <span className="boardTitle">
+                      <Link to={`/${article.id}`}>{article.title}</Link>
+                    </span>
                     <span className="boardWriter">{article.username}</span>
                   </li>
                 ) : null

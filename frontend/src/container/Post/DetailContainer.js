@@ -3,6 +3,7 @@ import Detail from "../../components/Post/Detail";
 import { useState } from "react";
 import { useEffect } from "react";
 import Axios from "axios";
+import { withRouter } from "react-router-dom";
 
 const DetailContainer = ({ match }) => {
   const { postId } = match.params;
@@ -20,8 +21,8 @@ const DetailContainer = ({ match }) => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [postId]);
   return <Detail article={article} loading={loading} />;
 };
 
-export default DetailContainer;
+export default withRouter(DetailContainer);
