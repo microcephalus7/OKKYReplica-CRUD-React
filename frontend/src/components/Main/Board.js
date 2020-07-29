@@ -74,14 +74,16 @@ const Board = ({ articles, loading, categories }) => {
           <BoardOuter>
             <BoardTitle>
               <MdFlag className="icon" />
-              <span>{category}</span>
+              <span>
+                <Link to={`/category/${category}`}>{category}</Link>
+              </span>
             </BoardTitle>
             <BoardInner>
               {articles.map((article) =>
                 article.category === category ? (
                   <li key={article.id}>
                     <span className="boardTitle">
-                      <Link to={`/${article.id}`}>{article.title}</Link>
+                      <Link to={`/detail/${article.id}`}>{article.title}</Link>
                     </span>
                     <span className="boardWriter">{article.username}</span>
                   </li>

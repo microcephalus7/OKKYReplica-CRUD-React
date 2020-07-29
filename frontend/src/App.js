@@ -11,8 +11,8 @@ const App = () => {
   return (
     <>
       <Route path="/" component={MainPage} exact />
-      <Route path="/:postId" component={DetailPage} />
-      <Route path="/category" component={BoardPage} />
+      <Route path="/detail/:postId" component={DetailPage} />
+      <Route path="/category/:category" component={BoardPage} />
       <Route path="/writing" component={WritingPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />

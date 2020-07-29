@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MdEdit, MdChatBubble, MdFace } from "react-icons/md";
 import Profile from "../common/Profile";
+import { Link } from "react-router-dom";
 
 const DetailWrapper = styled.div`
   display: block;
@@ -193,12 +194,14 @@ const Detail = ({ article, loading }) => {
     return <DetailWrapper>로딩중</DetailWrapper>;
   }
   if (!article) {
-    return <DetailWrapper>오류 발생!</DetailWrapper>;
+    return null;
   }
   return (
     <DetailWrapper>
       <div className="boardNavigation">
-        <span className="boardTitle">{article.category}</span>
+        <span className="boardTitle">
+          <Link to={`/category/${article.category}`}>{article.category}</Link>
+        </span>
         <div className="boardWriting">
           <MdEdit />
           <span>New Article</span>

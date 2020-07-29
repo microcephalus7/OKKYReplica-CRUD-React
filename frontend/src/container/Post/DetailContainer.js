@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Detail from "../../components/Post/Detail";
-import { useState } from "react";
-import { useEffect } from "react";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
 

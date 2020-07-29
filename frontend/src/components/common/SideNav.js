@@ -103,7 +103,9 @@ const SideNav = ({ categories, loading }) => {
 
   return (
     <SideNavWrapper>
-      <Link className="logo">옼끼</Link>
+      <Link to="/" className="logo">
+        옼끼
+      </Link>
       <div className="search">
         <input placeholder="Google 검색" />
         <button>
@@ -123,7 +125,7 @@ const SideNav = ({ categories, loading }) => {
           <div key={category}>
             <MdList />
             <span>
-              <Link>{category}</Link>
+              <Link to={`/category/${category}`}>{category}</Link>
             </span>
           </div>
         ))}
