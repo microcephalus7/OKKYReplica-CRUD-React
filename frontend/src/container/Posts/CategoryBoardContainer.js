@@ -19,7 +19,7 @@ const CategoryBoardContainer = ({ match }) => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [category]);
   return (
     <>
       <CategoryBoard
