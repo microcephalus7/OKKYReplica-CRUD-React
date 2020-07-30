@@ -9,11 +9,12 @@ const WritingContainer = ({ history }) => {
     title: "",
     body: "",
     category: "Free",
-    comment: null,
+    comment: [],
   });
   const [categories, setCategories] = useState(null);
   const { title, body, category, comment } = article;
   const [loading, setLoading] = useState(false);
+  const [newArticle, setNewArticle] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +28,10 @@ const WritingContainer = ({ history }) => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+    if (newArticle) {
+      history.push(`detail/${newArticle.id}`);
+    }
+  }, [newArticle, history]);
   const handleChange = (e) => {
     const nextState = { ...article, [e.target.name]: e.target.value };
     setArticle(nextState);
@@ -40,16 +44,20 @@ const WritingContainer = ({ history }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        Axios.post(`/articles`, { title, body, category, comment });
+        const response = await Axios.post(`/articles`, {
+          title,
+          body,
+          category,
+          comment,
+        });
+        setNewArticle(response.data);
       } catch (e) {
         console.log(e);
       }
       setLoading(false);
     };
     fetchData();
-    history.push("/");
   };
-
   return (
     <Writing
       title={title}

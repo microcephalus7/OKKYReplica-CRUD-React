@@ -117,7 +117,9 @@ const Writing = ({
         <div className="updatingTextfield">
           <select name="category" value={category} onChange={handleChange}>
             {categories.map((cate) => (
-              <option value={cate}>{cate}</option>
+              <option key={cate} value={cate}>
+                {cate}
+              </option>
             ))}
           </select>
           <input
