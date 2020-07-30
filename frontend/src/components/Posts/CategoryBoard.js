@@ -25,6 +25,9 @@ const BoardWrapper = styled.div`
       background: #5cb85c;
       span {
         margin-left: 5px;
+        a {
+          color: white;
+        }
       }
     }
   }
@@ -98,12 +101,14 @@ const CategoryBoard = ({ category, articles, loading }) => {
         <span className="boardTitle">{category}</span>
         <div className="boardWriting">
           <MdEdit />
-          <span>New Article</span>
+          <span>
+            <Link to="/writing">New Article</Link>
+          </span>
         </div>
       </div>
       <div className="boardList">
         {articles.map((article) => (
-          <div className="boardItem">
+          <div className="boardItem" key={article.id}>
             <span className="itemTitle">
               <Link to={`/detail/${article.id}`}>{article.title}</Link>
             </span>

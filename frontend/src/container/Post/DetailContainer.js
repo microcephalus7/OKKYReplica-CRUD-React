@@ -7,6 +7,7 @@ const DetailContainer = ({ match }) => {
   const { postId } = match.params;
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -20,7 +21,14 @@ const DetailContainer = ({ match }) => {
     };
     fetchData();
   }, [postId]);
-  return <Detail article={article} loading={loading} />;
+  return (
+    <Detail
+      article={article}
+      loading={loading}
+      visible={visible}
+      setVisible={setVisible}
+    />
+  );
 };
 
 export default withRouter(DetailContainer);

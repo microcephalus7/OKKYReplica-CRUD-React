@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { MdEdit, MdChatBubble, MdFace } from "react-icons/md";
+import { MdEdit, MdChatBubble, MdFace, MdSettings } from "react-icons/md";
 import Profile from "../common/Profile";
 import { Link } from "react-router-dom";
 
@@ -27,6 +27,9 @@ const DetailWrapper = styled.div`
       background: #5cb85c;
       span {
         margin-left: 5px;
+        a {
+          color: white;
+        }
       }
     }
   }
@@ -90,11 +93,20 @@ const DetailWrapper = styled.div`
         .boardSubscribe {
           margin-top: 40px;
           margin-bottom: 40px;
+          min-height: 160px;
         }
       }
-      .boardRight {
-        width: 80px;
+      .boardOption {
+        width: 110px;
         border-left: #dddddd solid 0.3px;
+        color: #999999;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        svg {
+          font-size: 1.4rem;
+          margin-bottom: 20px;
+        }
       }
     }
   }
@@ -204,7 +216,9 @@ const Detail = ({ article, loading }) => {
         </span>
         <div className="boardWriting">
           <MdEdit />
-          <span>New Article</span>
+          <span>
+            <Link to="/writing">New Article</Link>
+          </span>
         </div>
       </div>
       <div className="boardDetail">
@@ -224,7 +238,9 @@ const Detail = ({ article, loading }) => {
             <div className="boardTitle">{article.title}</div>
             <div className="boardSubscribe">{article.body}</div>
           </div>
-          <div className="boardRight"></div>
+          <div className="boardOption">
+            <MdSettings />
+          </div>
         </div>
       </div>
       <div className="boardComment">
