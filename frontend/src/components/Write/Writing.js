@@ -96,6 +96,7 @@ const Writing = ({
   handleChange,
   handleSubmit,
   categories,
+  handleCancel,
 }) => {
   if (loading) {
     return <UpdatingWrapper>로딩 중</UpdatingWrapper>;
@@ -114,7 +115,7 @@ const Writing = ({
             <span className="date">2020/07/10</span>
           </div>
         </div>
-        <div className="updatingTextfield">
+        <form className="updatingTextfield">
           <select name="category" value={category} onChange={handleChange}>
             {categories.map((cate) => (
               <option key={cate} value={cate}>
@@ -130,12 +131,14 @@ const Writing = ({
           />
           <textarea name="body" value={body} onChange={handleChange} />
           <div className="updatingButtons">
-            <button className="cancel">취소</button>
+            <button className="cancel" onClick={handleCancel}>
+              취소
+            </button>
             <button className="submit" onClick={handleSubmit}>
               create
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </UpdatingWrapper>
   );

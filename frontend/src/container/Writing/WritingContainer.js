@@ -58,6 +58,9 @@ const WritingContainer = ({ history }) => {
     };
     fetchData();
   };
+  const handleCancel = () => {
+    history.goBack();
+  };
   return (
     <Writing
       title={title}
@@ -67,6 +70,7 @@ const WritingContainer = ({ history }) => {
       categories={categories}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
+      handleCancel={handleCancel}
     />
   );
 };

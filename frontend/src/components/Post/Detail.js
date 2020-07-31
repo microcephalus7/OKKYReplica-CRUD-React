@@ -101,11 +101,40 @@ const DetailWrapper = styled.div`
         border-left: #dddddd solid 0.3px;
         color: #999999;
         display: flex;
-        justify-content: center;
-        align-items: flex-end;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: column;
+        z-index: 0;
+        .optionWrapper {
+          .option {
+            position: relative;
+            color: white;
+            background: black;
+            font-size: 0.7rem;
+            z-index: 3;
+            bottom: 30px;
+            left: -62px;
+            height: 23px;
+            width: 80px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .option::before {
+              width: 10px;
+              height: 10px;
+              border-width: 9px 0 9px 19px;
+              background: black;
+              right: -10px;
+            }
+          }
+        }
+
         svg {
+          position: relative;
+          z-index: 0;
+          margin-bottom: 10px;
           font-size: 1.4rem;
-          margin-bottom: 20px;
         }
       }
     }
@@ -201,7 +230,7 @@ const DetailWrapper = styled.div`
     }
   }
 `;
-const Detail = ({ article, loading }) => {
+const Detail = ({ article, loading, visible, setVisible, handleDelete }) => {
   if (loading) {
     return <DetailWrapper>로딩중</DetailWrapper>;
   }
@@ -229,7 +258,7 @@ const Detail = ({ article, loading }) => {
             <span className="date">2020/07/10</span>
           </div>
           <div className="boardInfo">
-            <MdChatBubble />{" "}
+            <MdChatBubble />
             <span>{!article.comment ? 0 : article.comment.length}</span>
           </div>
         </div>
@@ -240,6 +269,17 @@ const Detail = ({ article, loading }) => {
           </div>
           <div className="boardOption">
             <MdSettings />
+            <div className="optionWrapper">
+              <div className="option">
+                <span>게시물 설정</span>
+              </div>
+              <div className="optionArrow"></div>
+              <div className="optionHandle">
+                <div className="optionDelete" onClick={handleDelete}>
+                  <span>글 삭제</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
