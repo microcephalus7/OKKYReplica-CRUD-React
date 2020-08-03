@@ -32,6 +32,9 @@ const DetailContainer = ({ match, history }) => {
     fetchData();
     history.push(`/`);
   };
+  const handleUpdate = () => {
+    history.push(`/update/${postId}`);
+  };
   return (
     <Detail
       article={article}
@@ -39,6 +42,7 @@ const DetailContainer = ({ match, history }) => {
       visible={visible}
       setVisible={setVisible}
       handleDelete={handleDelete}
+      handleUpdate={handleUpdate}
     />
   );
 };

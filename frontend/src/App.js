@@ -6,6 +6,7 @@ import DetailPage from "./pages/DetailPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import WritingPage from "./pages/WritingPage";
+import UpdatePage from "./pages/UpdatePage";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path="/writing" component={WritingPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
+      <Route path="/update/:postId" component={UpdatePage} />
     </>
   );
 };
