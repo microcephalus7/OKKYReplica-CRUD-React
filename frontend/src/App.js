@@ -7,8 +7,12 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import WritingPage from "./pages/WritingPage";
 import UpdatePage from "./pages/UpdatePage";
+import { useState } from "react";
 
 const App = () => {
+  const [userInfo, setUserInfo] = useState({
+    username: "",
+  });
   return (
     <>
       <Route path="/" component={MainPage} exact />

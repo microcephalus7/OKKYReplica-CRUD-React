@@ -97,6 +97,7 @@ const Writing = ({
   handleSubmit,
   categories,
   handleCancel,
+  update,
 }) => {
   if (loading) {
     return <UpdatingWrapper>로딩 중</UpdatingWrapper>;
@@ -106,7 +107,7 @@ const Writing = ({
   }
   return (
     <UpdatingWrapper>
-      <div className="updatingTitle">글 쓰기</div>
+      <div className="updatingTitle">{update ? "글 수정" : "글 쓰기"}</div>
       <div className="updatingInner">
         <div className="UpdatingProfile">
           <MdFace />

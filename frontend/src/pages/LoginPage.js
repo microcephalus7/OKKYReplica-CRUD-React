@@ -1,11 +1,11 @@
 import React from "react";
-import AuthForm from "../components/auth/AuthForm";
+import LoginContainer from "../container/auth/LoginContainer";
 import SideNav from "../components/common/SideNav";
 const LoginPage = () => {
   return (
     <>
       <SideNav />
-      <AuthForm />
+      <LoginContainer />
     </>
   );
 };

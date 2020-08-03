@@ -77,6 +77,7 @@ const UpdateContainer = ({ match, history }) => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
+      update
     />
   );
 };
