@@ -10,9 +10,7 @@ import UpdatePage from "./pages/UpdatePage";
 import { useState } from "react";
 
 const App = () => {
-  const [userInfo, setUserInfo] = useState({
-    username: "",
-  });
+  const [userInfo, setUserInfo] = useState(null);
   return (
     <>
       <Route path="/" component={MainPage} exact />

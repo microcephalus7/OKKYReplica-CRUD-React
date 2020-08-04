@@ -1,8 +1,8 @@
 import React from "react";
-import Register from "../../components/auth/Register";
+import Auth from "../../components/auth/Auth";
 
 const RegisterContainer = () => {
-  return <Register />;
+  return <Auth />;
 };
 
 export default RegisterContainer;

@@ -131,6 +131,13 @@ const DetailWrapper = styled.div`
             }
           }
         }
+        .optionHandle {
+          div {
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px 0;
+          }
+        }
       }
     }
   }

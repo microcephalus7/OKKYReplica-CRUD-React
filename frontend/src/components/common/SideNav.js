@@ -69,6 +69,9 @@ const SideNavWrapper = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      a {
+        color: white;
+      }
     }
   }
   .cateList {
@@ -114,10 +117,16 @@ const SideNav = ({ categories, loading }) => {
       </div>
       <div className="profile">
         <div className="profileInner">
-          <MdPowerSettingsNew /> <span>로그인</span>
+          <MdPowerSettingsNew />
+          <Link to="/login">
+            <span>로그인</span>
+          </Link>
         </div>
         <div className="profileInner">
-          <MdPermIdentity /> <span>회원가입</span>
+          <MdPermIdentity />
+          <Link to="/register">
+            <span>회원가입</span>
+          </Link>
         </div>
       </div>
       <div className="cateList">
