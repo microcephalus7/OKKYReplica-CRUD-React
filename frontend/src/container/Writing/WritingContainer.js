@@ -9,10 +9,9 @@ const WritingContainer = ({ history }) => {
     title: "",
     body: "",
     category: "Free",
-    comment: [],
   });
   const [categories, setCategories] = useState(null);
-  const { title, body, category, comment } = article;
+  const { title, body, category } = article;
   const [loading, setLoading] = useState(false);
   const [newArticle, setNewArticle] = useState(null);
 
@@ -28,10 +27,10 @@ const WritingContainer = ({ history }) => {
       setLoading(false);
     };
     fetchData();
-    if (newArticle) {
-      history.push(`detail/${newArticle.id}`);
+    if (!!newArticle) {
+      history.push(`/detail/${newArticle.id}`);
     }
-  }, [newArticle, history]);
+  }, [history, newArticle]);
   const handleChange = (e) => {
     const nextState = { ...article, [e.target.name]: e.target.value };
     setArticle(nextState);
@@ -42,19 +41,16 @@ const WritingContainer = ({ history }) => {
       return null;
     }
     const fetchData = async () => {
-      setLoading(true);
       try {
         const response = await Axios.post(`/articles`, {
           title,
           body,
           category,
-          comment,
         });
         setNewArticle(response.data);
       } catch (e) {
         console.log(e);
       }
-      setLoading(false);
     };
     fetchData();
   };

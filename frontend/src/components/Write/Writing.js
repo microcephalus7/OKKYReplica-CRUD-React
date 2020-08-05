@@ -68,7 +68,7 @@ const UpdatingWrapper = styled.div`
         display: flex;
         justify-content: space-between;
         margin-top: 40px;
-        button {
+        .submit {
           width: 100px;
           display: flex;
           align-items: center;
@@ -135,9 +135,9 @@ const Writing = ({
             <button className="cancel" onClick={handleCancel}>
               취소
             </button>
-            <button className="submit" onClick={handleSubmit}>
+            <div className="submit" onClick={handleSubmit}>
               create
-            </button>
+            </div>
           </div>
         </form>
       </div>

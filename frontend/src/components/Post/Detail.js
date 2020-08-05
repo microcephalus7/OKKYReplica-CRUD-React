@@ -239,6 +239,10 @@ const Detail = ({
   setVisible,
   handleDelete,
   handleUpdate,
+  handleChange,
+  comments,
+  body,
+  handleSubmit,
 }) => {
   if (loading) {
     return <DetailWrapper>로딩중</DetailWrapper>;
@@ -295,16 +299,18 @@ const Detail = ({
       </div>
       <div className="boardComment">
         <div className="commentCount">
-          댓글 {!article.comment ? 0 : article.comment.length}
+          댓글 {!comments ? 0 : comments.length}
         </div>
         <div className="commentList">
-          {!article.comment ? (
+          {!comments ? (
             <div className="commentBody"> 댓글이 없습니다.</div>
           ) : (
-            article.comment.map((com) => (
+            comments.map((com) => (
               <>
                 <Profile username={com.username} />
-                <div className="commentBody">{com.body}</div>
+                <div className="commentBody" key={com.id}>
+                  {com.body}
+                </div>
               </>
             ))
           )}
@@ -316,11 +322,17 @@ const Detail = ({
               <span className="profileNick">호우</span>
             </div>
             <div className="commentInput">
-              <textarea placeholder="댓글 쓰기" />
+              <textarea
+                placeholder="댓글 쓰기"
+                value={body}
+                onChange={handleChange}
+              />
             </div>
           </div>
           <div className="commentSubmit">
-            <div className="submit">등록</div>
+            <button className="submit" onClick={handleSubmit}>
+              등록
+            </button>
           </div>
         </div>
       </div>

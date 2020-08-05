@@ -1,118 +1,11 @@
 {
-  "categories": ["Free", "QnA", "Tech", "Jobs"],
+  "categories": [
+    "Free",
+    "QnA",
+    "Tech",
+    "Jobs"
+  ],
   "articles": [
-    {
-      "category": "Free",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "1",
-      "title": "자유 제목",
-      "body": "자유 내용ㅇㅁㄴㄹㅇㄴㅁㄹ",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
-    },
-    {
-      "category": "Free",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "2",
-      "title": "자유 제목",
-      "body": "자유 내용",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
-    },
-    {
-      "category": "Free",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "3",
-      "title": "자유 제목",
-      "body": "자유 내용",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
-    },
-    {
-      "category": "Free",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "5",
-      "title": "자유 제목",
-      "body": "자유 내용",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
-    },
-    {
-      "category": "QnA",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "6",
-      "title": "Q&A 제목",
-      "body": "A 내용",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
-    },
-    {
-      "category": "Tech",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "7",
-      "title": "Tech 제목",
-      "body": "Tech 내용",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
-    },
-    {
-      "category": "Jobs",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "8",
-      "title": "Jobs 제목",
-      "body": "Jobs 내용",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
-    },
     {
       "title": "ㅇㄻㅇㄹ",
       "body": "ㅇㄻㅇㄹㅇㄴㅁㄹ",
@@ -133,22 +26,6 @@
       "category": "Free",
       "comment": [],
       "id": "qOkYceI"
-    },
-    {
-      "category": "Free",
-      "userId": "hou123",
-      "username": "hou",
-      "title": "자유 제목22",
-      "body": "자유 내용22",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ],
-      "id": "DVDllRQ"
     },
     {
       "title": "dsafdsaf",
@@ -359,6 +236,78 @@
       "category": "Free",
       "comment": [],
       "id": "x4nbHHz"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇㅇ",
+      "category": "Free",
+      "id": "d1D2Bkt"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇ",
+      "category": "Free",
+      "id": "PlqRCzq"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇ",
+      "category": "Free",
+      "id": "NJM9OKX"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇ",
+      "category": "Free",
+      "id": "pL3DD-3"
+    },
+    {
+      "title": "ㅇㅇㅇㅇ",
+      "body": "ㅇㅇㅇ",
+      "category": "Free",
+      "id": "k2PneWu"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇㅇㅇㅇ",
+      "category": "Free",
+      "id": "v6wEuFj"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇ",
+      "category": "Free",
+      "id": "xVDYfRA"
+    },
+    {
+      "title": "ㅇㅇ",
+      "body": "ㅇㅇㅇ",
+      "category": "Free",
+      "id": "UH-WZ_D"
+    },
+    {
+      "title": "ㅇㅇㅇㅇ",
+      "body": "ㅇㅇㅇ",
+      "category": "Tech",
+      "id": "N7q-ymT"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇㅇㅇ",
+      "category": "Free",
+      "id": "_gOTJi-"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇㅇㅇㅇ",
+      "category": "Free",
+      "id": "gD-Qxl0"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅇㅇㅇ",
+      "category": "Free",
+      "id": "_woLyZW"
     }
   ],
   "users": [
@@ -376,6 +325,146 @@
       "username": "hou3",
       "password": "1234",
       "id": "3"
+    }
+  ],
+  "comments": [
+    {
+      "username": "hou",
+      "body": "댓글",
+      "id": "1",
+      "arricleId": "1"
+    },
+    {
+      "username": "hou",
+      "body": "댓글",
+      "id": "2",
+      "arricleId": "1"
+    },
+    {
+      "username": "hou",
+      "body": "댓글",
+      "id": "3",
+      "arricleId": "1"
+    },
+    {
+      "username": "hou",
+      "body": "댓글",
+      "id": "4",
+      "arricleId": "1"
+    },
+    {
+      "body": "ㅇㅁㄻㅇㄴㄹ",
+      "username": "",
+      "articleId": "1",
+      "id": "bg6qgpY"
+    },
+    {
+      "body": "ㅇㅇㅇㅇㅇ",
+      "username": "",
+      "articleId": "1",
+      "id": "w09b4U5"
+    },
+    {
+      "body": "ㅇㅇㅇ",
+      "username": "",
+      "articleId": "1",
+      "id": "arjJ4Lh"
+    },
+    {
+      "body": "ㅇㅇㅇ",
+      "username": "",
+      "articleId": "1",
+      "id": "ZuG6PJy"
+    },
+    {
+      "body": "ㅇㅁㄹㄴㅇㅁㄹ",
+      "username": "",
+      "articleId": "1",
+      "id": "NdLkWcj"
+    },
+    {
+      "body": "ㅇㄹㅇㄹ",
+      "username": "",
+      "articleId": "6",
+      "id": "TArY8pZ"
+    },
+    {
+      "body": "ㅇㅇㅇ",
+      "username": "",
+      "articleId": "1",
+      "id": "KgiLdWk"
+    },
+    {
+      "body": "ㄹㄹ",
+      "username": "",
+      "articleId": "1",
+      "id": "Gw8l478"
+    },
+    {
+      "body": "ㅇㅇㅇㅇ",
+      "username": "",
+      "articleId": "1",
+      "id": "quhLSk8"
+    },
+    {
+      "body": "ㅇㅇㅇ",
+      "username": "",
+      "articleId": "_woLyZW",
+      "id": "CwzBYRx"
+    },
+    {
+      "body": "ㅇㅇㅇㅇ",
+      "username": "",
+      "articleId": "_woLyZW",
+      "id": "82aDV9i"
+    },
+    {
+      "body": "ㅇㅇㅇㅇㅇ",
+      "username": "",
+      "articleId": "5",
+      "id": "wrjBFlA"
+    },
+    {
+      "body": "ㅇㅇㅇㅇ",
+      "username": "",
+      "articleId": "DVDllRQ",
+      "id": "TScTQhn"
+    },
+    {
+      "body": "ㅇㅇㅇ",
+      "username": "",
+      "articleId": "qOkYceI",
+      "id": "Wotzw8r"
+    },
+    {
+      "body": "ㅇㅇㅇㅇ",
+      "username": "",
+      "articleId": "qOkYceI",
+      "id": "NlL6plb"
+    },
+    {
+      "body": "ㅇㅇㅇ",
+      "username": "",
+      "articleId": "4Vp3Mce",
+      "id": "-cahJZJ"
+    },
+    {
+      "body": "ㅇㅇㅇ",
+      "username": "",
+      "articleId": "-Ya3gDU",
+      "id": "a0m6SlK"
+    },
+    {
+      "body": "ㅇㅇㅇㅇ",
+      "username": "",
+      "articleId": "-Ya3gDU",
+      "id": "uLD7YLg"
+    },
+    {
+      "body": "ㄹㄹㄹㄹㄹ",
+      "username": "",
+      "articleId": "-Ya3gDU",
+      "id": "-mtYAFt"
     }
   ]
 }
