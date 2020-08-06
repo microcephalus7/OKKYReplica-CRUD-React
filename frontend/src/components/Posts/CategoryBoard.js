@@ -115,7 +115,7 @@ const CategoryBoard = ({ category, articles, loading }) => {
             <div className="itemOverview">
               <div className="overviewItem">
                 <MdChatBubble />
-                <span>{article.comment.length}</span>
+                <span>{article.comment ? article.comment.length : 0}</span>
               </div>
             </div>
             <div className="itemProfile">

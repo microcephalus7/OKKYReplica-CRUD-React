@@ -243,7 +243,9 @@ const Detail = ({
   comments,
   body,
   handleSubmit,
+  state,
 }) => {
+  const { auth, userInfo } = state;
   if (loading) {
     return <DetailWrapper>로딩중</DetailWrapper>;
   }
@@ -281,19 +283,25 @@ const Detail = ({
             <div className="boardSubscribe">{article.body}</div>
           </div>
           <div className="boardOption">
-            <div className="optionWrapper">
-              <div className="option">
-                {visible ? <div className="optionBox">게시물 설정</div> : null}
-                <MdSettings
-                  onMouseOver={() => setVisible(true)}
-                  onMouseOut={() => setVisible(false)}
-                />
-              </div>
-            </div>
-            <div className="optionHandle">
-              <div onClick={handleDelete}>글 삭제</div>
-              <div onClick={handleUpdate}>글 수정</div>
-            </div>
+            {article.userId === userInfo ? (
+              <>
+                <div className="optionWrapper">
+                  <div className="option">
+                    {visible ? (
+                      <div className="optionBox">게시물 설정</div>
+                    ) : null}
+                    <MdSettings
+                      onMouseOver={() => setVisible(true)}
+                      onMouseOut={() => setVisible(false)}
+                    />
+                  </div>
+                </div>{" "}
+                <div className="optionHandle">
+                  <div onClick={handleDelete}>글 삭제</div>
+                  <div onClick={handleUpdate}>글 수정</div>
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
       </div>
@@ -316,24 +324,31 @@ const Detail = ({
           )}
         </div>
         <div className="commentWriting">
-          <div className="WritingWrapper">
-            <div className="commentProfile">
-              <MdFace />
-              <span className="profileNick">호우</span>
-            </div>
-            <div className="commentInput">
-              <textarea
-                placeholder="댓글 쓰기"
-                value={body}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-          <div className="commentSubmit">
-            <button className="submit" onClick={handleSubmit}>
-              등록
-            </button>
-          </div>
+          {auth ? (
+            <>
+              {" "}
+              <div className="WritingWrapper">
+                <div className="commentProfile">
+                  <MdFace />
+                  <span className="profileNick">{userInfo.username}</span>
+                </div>
+                <div className="commentInput">
+                  <textarea
+                    placeholder="댓글 쓰기"
+                    value={body}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>{" "}
+              <div className="commentSubmit">
+                <button className="submit" onClick={handleSubmit}>
+                  등록
+                </button>
+              </div>
+            </>
+          ) : (
+            "로그인을 해야 글쓰기가 가능합니다"
+          )}
         </div>
       </div>
     </DetailWrapper>

@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Detail from "../../components/Post/Detail";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
+import AuthContext from "../../context/auth";
 
 const DetailContainer = ({ match, history }) => {
   const { postId } = match.params;
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState(null);
+  const [newComment, setNewComment] = useState(null);
+  const { state } = useContext(AuthContext);
   const [comment, setComment] = useState({
     body: "",
     username: "",
-    articleId: postId,
+    articleId: state.userInfo.id,
   });
-  const [newComment, setNewComment] = useState(null);
   const { body, username, articleId } = comment;
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -78,6 +80,7 @@ const DetailContainer = ({ match, history }) => {
       handleChange={handleChange}
       comments={comments}
       body={body}
+      state={state}
     />
   );
 };

@@ -1,21 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Writing from "../../components/Write/Writing";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
-
+import AuthContext from "../../context/auth";
 const WritingContainer = ({ history }) => {
+  const { state } = useContext(AuthContext);
+  const { userInfo, auth } = state;
   const [article, setArticle] = useState({
     title: "",
     body: "",
     category: "Free",
+    username: userInfo.username,
   });
   const [categories, setCategories] = useState(null);
-  const { title, body, category } = article;
+  const { title, body, category, username } = article;
   const [loading, setLoading] = useState(false);
   const [newArticle, setNewArticle] = useState(null);
 
   useEffect(() => {
+    if (!auth) {
+      alert("로그인을 해야 글 쓰기가 가능합니다");
+      history.push("/");
+    }
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -46,6 +53,7 @@ const WritingContainer = ({ history }) => {
           title,
           body,
           category,
+          username,
         });
         setNewArticle(response.data);
       } catch (e) {
