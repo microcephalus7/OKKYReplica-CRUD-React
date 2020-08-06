@@ -1,25 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import Axios from "axios";
 import SideNav from "../../components/common/SideNav";
+import usePromise from "../../lib/hooks/usePromise";
+import AuthContext from "../../context/auth";
 
 const SideNavContainer = () => {
-  const [categories, setCategories] = useState(null);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const responseCategory = await Axios.get("/categories");
-        setCategories(responseCategory.data);
-      } catch (e) {
-        console.log(e);
-      }
-      setLoading(false);
-    };
-    fetchData();
+  const { state } = useContext(AuthContext);
+  const [loading, resolved, error] = usePromise(() => {
+    return Axios.get("/categories");
   }, []);
-  return <SideNav categories={categories} loading={loading} />;
+
+  if (!resolved) {
+    return null;
+  }
+  if (error) {
+    error(error);
+  }
+  const categories = resolved.data;
+  return <SideNav categories={categories} loading={loading} state={state} />;
 };
 
 export default SideNavContainer;

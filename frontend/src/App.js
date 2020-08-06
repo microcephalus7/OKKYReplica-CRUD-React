@@ -7,12 +7,11 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import WritingPage from "./pages/WritingPage";
 import UpdatePage from "./pages/UpdatePage";
-import { useState } from "react";
+import { AuthProvider } from "./context/auth";
 
 const App = () => {
-  const [userInfo, setUserInfo] = useState(null);
   return (
-    <>
+    <AuthProvider>
       <Route path="/" component={MainPage} exact />
       <Route path="/detail/:postId" component={DetailPage} />
       <Route path="/category/:category" component={BoardPage} />
@@ -20,7 +19,7 @@ const App = () => {
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/update/:postId" component={UpdatePage} />
-    </>
+    </AuthProvider>
   );
 };
 

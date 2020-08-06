@@ -8,6 +8,7 @@ const LoginContainer = () => {
     id: "",
     password: "",
   });
+  const [auth, setAuth] = useState(null);
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
   const { id, password } = user;
@@ -18,7 +19,8 @@ const LoginContainer = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.post(`/user`);
+        const response = await Axios.post(`/user/login`);
+        setUser(response.data);
       } catch (e) {
         setStatus(e);
       }

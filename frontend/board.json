@@ -1,25 +1,33 @@
 {
-  "categories": [
-    "Free",
-    "QnA",
-    "Tech",
-    "Jobs"
+  "categories": ["Free", "QnA", "Tech", "Jobs"],
+  "users": [
+    {
+      "username": "hou1",
+      "password": "1234",
+      "nickname": "호우1",
+      "id": "1"
+    },
+    {
+      "username": "hou2",
+      "password": "1234",
+      "nickname": "호우2",
+      "id": "2"
+    },
+    {
+      "username": "hou3",
+      "password": "1234",
+      "nickname": "호우3",
+      "id": "3"
+    }
   ],
   "articles": [
     {
       "title": "ㅇㄻㅇㄹ",
       "body": "ㅇㄻㅇㄹㅇㄴㅁㄹ",
       "category": "QnA",
-      "id": "d8i0ZO3",
-      "comment": [
-        {
-          "no": 1,
-          "username": "hou",
-          "id": "1",
-          "body": "내용"
-        }
-      ]
+      "id": "d8i0ZO3"
     },
+
     {
       "title": "dasfdasf",
       "body": "dafdsafsadf",
@@ -308,23 +316,6 @@
       "body": "ㅇㅇㅇㅇ",
       "category": "Free",
       "id": "_woLyZW"
-    }
-  ],
-  "users": [
-    {
-      "username": "hou1",
-      "password": "1234",
-      "id": "1"
-    },
-    {
-      "username": "hou2",
-      "password": "1234",
-      "id": "2"
-    },
-    {
-      "username": "hou3",
-      "password": "1234",
-      "id": "3"
     }
   ],
   "comments": [

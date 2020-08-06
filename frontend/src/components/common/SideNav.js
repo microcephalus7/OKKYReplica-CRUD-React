@@ -96,7 +96,7 @@ const SideNavWrapper = styled.div`
   }
 `;
 
-const SideNav = ({ categories, loading }) => {
+const SideNav = ({ categories, loading, state }) => {
   if (loading) {
     return <SideNavWrapper>로딩 중</SideNavWrapper>;
   }
