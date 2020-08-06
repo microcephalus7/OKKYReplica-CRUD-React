@@ -7,6 +7,7 @@ import AuthContext from "../../context/auth";
 
 const SideNavContainer = () => {
   const { state, actions } = useContext(AuthContext);
+
   const [loading, resolved, error] = usePromise(() => {
     return Axios.get("/categories");
   }, []);
@@ -19,8 +20,14 @@ const SideNavContainer = () => {
   }
   const categories = resolved.data;
 
-  const { setUserInfo, setAuth, setAuthError } = actions;
-  return <SideNav categories={categories} loading={loading} state={state} />;
+  return (
+    <SideNav
+      categories={categories}
+      loading={loading}
+      state={state}
+      state={state}
+    />
+  );
 };
 
 export default SideNavContainer;

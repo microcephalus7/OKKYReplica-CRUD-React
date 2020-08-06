@@ -6,6 +6,7 @@ import {
   MdList,
   MdPermIdentity,
   MdPowerSettingsNew,
+  MdFace,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
 
@@ -62,6 +63,17 @@ const SideNavWrapper = styled.div`
     margin: 20px 0px;
     width: 100%;
     height: 35px;
+    .activeProfile {
+      font-size: 3rem;
+      padding-left: 5px;
+      display: flex;
+      align-items: center;
+      vertical-align: ceter;
+      span {
+        margin-left: 4px;
+        font-size: 0.9rem;
+      }
+    }
     .profileInner {
       font-size: 0.8rem;
       width: 50%;
@@ -97,6 +109,7 @@ const SideNavWrapper = styled.div`
 `;
 
 const SideNav = ({ categories, loading, state }) => {
+  const { userInfo, auth, authError } = state;
   if (loading) {
     return <SideNavWrapper>로딩 중</SideNavWrapper>;
   }
@@ -116,18 +129,27 @@ const SideNav = ({ categories, loading, state }) => {
         </button>
       </div>
       <div className="profile">
-        <div className="profileInner">
-          <MdPowerSettingsNew />
-          <Link to="/login">
-            <span>로그인</span>
-          </Link>
-        </div>
-        <div className="profileInner">
-          <MdPermIdentity />
-          <Link to="/register">
-            <span>회원가입</span>
-          </Link>
-        </div>
+        {auth ? (
+          <div className="activeProfile">
+            <MdFace />
+            <span className="profileNick">{userInfo.username}</span>
+          </div>
+        ) : (
+          <>
+            <div className="profileInner">
+              <MdPowerSettingsNew />
+              <Link to="/login">
+                <span>로그인</span>
+              </Link>
+            </div>
+            <div className="profileInner">
+              <MdPermIdentity />
+              <Link to="/register">
+                <span>회원가입</span>
+              </Link>
+            </div>
+          </>
+        )}
       </div>
       <div className="cateList">
         {categories.map((category) => (
