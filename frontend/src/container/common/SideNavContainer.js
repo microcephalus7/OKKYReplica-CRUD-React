@@ -6,7 +6,7 @@ import usePromise from "../../lib/hooks/usePromise";
 import AuthContext from "../../context/auth";
 
 const SideNavContainer = () => {
-  const { state } = useContext(AuthContext);
+  const { state, actions } = useContext(AuthContext);
   const [loading, resolved, error] = usePromise(() => {
     return Axios.get("/categories");
   }, []);
@@ -18,6 +18,8 @@ const SideNavContainer = () => {
     error(error);
   }
   const categories = resolved.data;
+
+  const { setUserInfo, setAuth, setAuthError } = actions;
   return <SideNav categories={categories} loading={loading} state={state} />;
 };
 

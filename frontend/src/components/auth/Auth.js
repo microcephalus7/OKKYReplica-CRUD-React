@@ -64,16 +64,51 @@ const LoginWrapper = styled.div`
   }
 `;
 
-const Login = ({ login, handleSubmit }) => {
+const Auth = ({
+  login,
+  handleSubmit,
+  id,
+  password,
+  passwordRepeat,
+  handleChange,
+  nickname,
+}) => {
   return (
     <LoginWrapper>
       {login ? "로그인" : "회원가입"}
       <div className="authInner">
         <div className="innerTitle">{login ? "로그인" : "회원가입"}</div>
         <form className="innerAuth">
-          <input placeholder="아이디" />
-          <input placeholder="비밀번호" type="password" />
-          {login ? null : <input placeholder="닉네임" />}
+          <input
+            placeholder="아이디"
+            name="id"
+            value={id}
+            onChange={handleChange}
+          />
+          <input
+            placeholder="비밀번호"
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+          {login ? null : (
+            <>
+              <input
+                placeholder="비밀번호 확인"
+                type="password"
+                name="passwordRepeat"
+                value={passwordRepeat}
+                onChange={handleChange}
+              />
+              <input
+                placeholder="닉네임"
+                name="nickname"
+                value={nickname}
+                onChange={handleChange}
+              />
+            </>
+          )}
           <div className="submit" onClick={handleSubmit}>
             {login ? "로그인" : "회원가입"}
           </div>
@@ -88,4 +123,4 @@ const Login = ({ login, handleSubmit }) => {
   );
 };
 
-export default Login;
+export default Auth;
