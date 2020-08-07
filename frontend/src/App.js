@@ -15,7 +15,7 @@ const App = () => {
       <Route path="/" component={MainPage} exact />
       <Route path="/detail/:postId" component={DetailPage} />
       <Route path="/category/:category" component={BoardPage} />
-      <Route path="/writing/:category?" component={WritingPage} />
+      <Route path="/writing/:boardCategory?" component={WritingPage} />
       <Route path="/login" component={LoginPage} />
       <Route path="/register" component={RegisterPage} />
       <Route path="/update/:postId" component={UpdatePage} />

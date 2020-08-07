@@ -5,17 +5,17 @@ import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
 const WritingContainer = ({ history, match }) => {
-  const { category } = match.params;
+  const { boardCategory } = match.params;
   const { state } = useContext(AuthContext);
   const { userInfo, auth } = state;
   const [article, setArticle] = useState({
     title: "",
     body: "",
-    articleCategory: category,
+    category: boardCategory,
     username: userInfo.username,
   });
   const [categories, setCategories] = useState(null);
-  const { title, body, articleCategory, username } = article;
+  const { title, body, category, username } = article;
   const [loading, setLoading] = useState(false);
   const [newArticle, setNewArticle] = useState(null);
 
@@ -44,7 +44,7 @@ const WritingContainer = ({ history, match }) => {
     setArticle(nextState);
   };
   const handleSubmit = () => {
-    if (!title || !body || !articleCategory) {
+    if (!title || !body || !category) {
       alert("빈 부분을 채워주세요!");
       return null;
     }
@@ -53,7 +53,7 @@ const WritingContainer = ({ history, match }) => {
         const response = await Axios.post(`/articles`, {
           title,
           body,
-          articleCategory,
+          category,
           username,
         });
         setNewArticle(response.data);
@@ -70,7 +70,7 @@ const WritingContainer = ({ history, match }) => {
     <Writing
       title={title}
       body={body}
-      articleCategory={articleCategory}
+      category={category}
       loading={loading}
       categories={categories}
       handleChange={handleChange}

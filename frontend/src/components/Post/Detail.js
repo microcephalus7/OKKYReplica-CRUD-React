@@ -261,7 +261,7 @@ const Detail = ({
         <div className="boardWriting">
           <MdEdit />
           <span>
-            <Link to="/writing">New Article</Link>
+            <Link to={`/writing/${article.category}`}>New Article</Link>
           </span>
         </div>
       </div>

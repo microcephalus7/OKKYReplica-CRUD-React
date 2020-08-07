@@ -91,7 +91,7 @@ const UpdatingWrapper = styled.div`
 const Writing = ({
   title,
   body,
-  articleCategory,
+  category,
   loading,
   handleChange,
   handleSubmit,
@@ -117,11 +117,7 @@ const Writing = ({
           </div>
         </div>
         <form className="updatingTextfield">
-          <select
-            name="articleCategory"
-            value={articleCategory}
-            onChange={handleChange}
-          >
+          <select name="category" value={category} onChange={handleChange}>
             {categories.map((cate) => (
               <option key={cate} value={cate}>
                 {cate}
