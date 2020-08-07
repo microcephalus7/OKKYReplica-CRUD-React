@@ -113,9 +113,10 @@ const CategoryBoard = ({
   category,
   articles,
   loading,
-  page,
   setPage,
-  lastPage,
+  nextPage,
+  prevPage,
+  list,
 }) => {
   if (loading) {
     return <BoardWrapper>로딩중</BoardWrapper>;
@@ -154,11 +155,11 @@ const CategoryBoard = ({
         ))}
       </div>
       <div className="pagination">
-        <div>«</div>
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>»</div>
+        <div onClick={prevPage}>«</div>
+        {list.map((pa) => (
+          <div onClick={() => setPage(pa)}>{pa}</div>
+        ))}
+        <div onClick={nextPage}>»</div>
       </div>
     </BoardWrapper>
   );

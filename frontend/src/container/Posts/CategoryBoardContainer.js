@@ -9,6 +9,7 @@ const CategoryBoardContainer = ({ match }) => {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(1);
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -32,6 +33,27 @@ const CategoryBoardContainer = ({ match }) => {
     };
     fetchData();
   }, [category, page]);
+  const nextPage = () => {
+    if (page === lastPage) {
+      alert("마지막 페이지 입니다");
+      return null;
+    }
+    setPage(page + 1);
+  };
+  const prevPage = () => {
+    if (page === 1) {
+      alert("첫 번째 페이지 입니다");
+      return null;
+    }
+    setPage(page - 1);
+  };
+  const list = [];
+  const pageSet = () => {
+    for (let i = 1; i <= lastPage; i++) {
+      list.push(i);
+    }
+  };
+  pageSet();
   return (
     <>
       <CategoryBoard
@@ -39,8 +61,11 @@ const CategoryBoardContainer = ({ match }) => {
         articles={articles}
         loading={loading}
         page={page}
-        setPage={setPage}
         lastPage={lastPage}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        setPage={setPage}
+        list={list}
       />
     </>
   );
