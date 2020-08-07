@@ -87,8 +87,36 @@ const BoardWrapper = styled.div`
       }
     }
   }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    div {
+      background: #ffffff;
+      color: #3a93de;
+      border: #dddddd solid 0.3px;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      min-width: 25px;
+      height: 25px;
+      display: flex;
+      vertical-align: middle;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      color: #337ab7;
+    }
+  }
 `;
-const CategoryBoard = ({ category, articles, loading }) => {
+const CategoryBoard = ({
+  category,
+  articles,
+  loading,
+  page,
+  setPage,
+  lastPage,
+}) => {
   if (loading) {
     return <BoardWrapper>로딩중</BoardWrapper>;
   }
@@ -124,6 +152,13 @@ const CategoryBoard = ({ category, articles, loading }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="pagination">
+        <div>«</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>»</div>
       </div>
     </BoardWrapper>
   );

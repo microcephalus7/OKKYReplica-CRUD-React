@@ -14,7 +14,7 @@ const CategoryBoardContainer = ({ match }) => {
       setLoading(true);
       try {
         const response = await Axios.get(
-          `/articles?category=${category}&_page=${page}&_limit=20`
+          `/articles?category=${category}&_page=${page}&_limit=15`
         );
         setArticles(response.data);
         setLastPage(
@@ -31,7 +31,7 @@ const CategoryBoardContainer = ({ match }) => {
       setLoading(false);
     };
     fetchData();
-  }, [category]);
+  }, [category, page]);
   return (
     <>
       <CategoryBoard
@@ -39,6 +39,7 @@ const CategoryBoardContainer = ({ match }) => {
         articles={articles}
         loading={loading}
         page={page}
+        setPage={setPage}
         lastPage={lastPage}
       />
     </>
