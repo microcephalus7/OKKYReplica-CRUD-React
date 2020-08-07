@@ -1,12 +1,12 @@
 import React from "react";
 import SideNavContainer from "../container/common/SideNavContainer";
-import BoardContainer from "../container/main/BoardContainer";
+import MainContainer from "../container/main/MainContainer";
 
 const MainPage = () => {
   return (
     <>
       <SideNavContainer />
-      <BoardContainer />
+      <MainContainer />
     </>
   );
 };
