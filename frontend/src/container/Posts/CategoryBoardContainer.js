@@ -8,6 +8,7 @@ const CategoryBoardContainer = ({ match }) => {
   const [articles, setArticles] = useState(null);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+
   const [lastPage, setLastPage] = useState(1);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const CategoryBoardContainer = ({ match }) => {
       }
       setLoading(false);
     };
+
     fetchData();
   }, [category, page]);
   const nextPage = () => {
@@ -47,13 +49,10 @@ const CategoryBoardContainer = ({ match }) => {
     }
     setPage(page - 1);
   };
-  const list = [];
-  const pageSet = () => {
-    for (let i = 1; i <= lastPage; i++) {
-      list.push(i);
-    }
-  };
-  pageSet();
+  const pageSet = [];
+  for (let i = 1; i <= lastPage; i++) {
+    pageSet.push(i);
+  }
   return (
     <>
       <CategoryBoard
@@ -65,7 +64,7 @@ const CategoryBoardContainer = ({ match }) => {
         nextPage={nextPage}
         prevPage={prevPage}
         setPage={setPage}
-        list={list}
+        pageSet={pageSet}
       />
     </>
   );

@@ -92,10 +92,10 @@ const BoardWrapper = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    div {
+    .page {
       background: #ffffff;
       color: #3a93de;
-      border: #dddddd solid 0.3px;
+      border: #dddddd solid 0.1px;
       border-collapse: collapse;
       font-size: 0.8rem;
       min-width: 25px;
@@ -107,6 +107,10 @@ const BoardWrapper = styled.div`
       font-weight: 500;
       color: #337ab7;
     }
+    .active {
+      color: white;
+      background: #337ab7;
+    }
   }
 `;
 const CategoryBoard = ({
@@ -116,7 +120,8 @@ const CategoryBoard = ({
   setPage,
   nextPage,
   prevPage,
-  list,
+  pageSet,
+  page,
 }) => {
   if (loading) {
     return <BoardWrapper>로딩중</BoardWrapper>;
@@ -156,8 +161,15 @@ const CategoryBoard = ({
       </div>
       <div className="pagination">
         <div onClick={prevPage}>«</div>
-        {list.map((pa) => (
-          <div onClick={() => setPage(pa)}>{pa}</div>
+        {pageSet.map((pa) => (
+          <div
+            onClick={() => {
+              setPage(pa);
+            }}
+            className={page === pa ? "page active" : "page"}
+          >
+            {pa}
+          </div>
         ))}
         <div onClick={nextPage}>»</div>
       </div>
