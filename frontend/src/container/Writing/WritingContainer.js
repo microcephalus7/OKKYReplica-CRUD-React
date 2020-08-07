@@ -70,7 +70,7 @@ const WritingContainer = ({ history, match }) => {
     <Writing
       title={title}
       body={body}
-      category={articleCategory}
+      articleCategory={articleCategory}
       loading={loading}
       categories={categories}
       handleChange={handleChange}
