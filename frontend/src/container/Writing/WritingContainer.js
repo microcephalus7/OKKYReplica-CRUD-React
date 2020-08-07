@@ -4,17 +4,18 @@ import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
-const WritingContainer = ({ history }) => {
+const WritingContainer = ({ history, match }) => {
+  const { category } = match.params;
   const { state } = useContext(AuthContext);
   const { userInfo, auth } = state;
   const [article, setArticle] = useState({
     title: "",
     body: "",
-    category: "Free",
+    articleCategory: category,
     username: userInfo.username,
   });
   const [categories, setCategories] = useState(null);
-  const { title, body, category, username } = article;
+  const { title, body, articleCategory, username } = article;
   const [loading, setLoading] = useState(false);
   const [newArticle, setNewArticle] = useState(null);
 
@@ -37,13 +38,13 @@ const WritingContainer = ({ history }) => {
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-  }, [history, newArticle]);
+  }, [history, newArticle, auth]);
   const handleChange = (e) => {
     const nextState = { ...article, [e.target.name]: e.target.value };
     setArticle(nextState);
   };
   const handleSubmit = () => {
-    if (!title || !body || !category) {
+    if (!title || !body || !articleCategory) {
       alert("빈 부분을 채워주세요!");
       return null;
     }
@@ -52,7 +53,7 @@ const WritingContainer = ({ history }) => {
         const response = await Axios.post(`/articles`, {
           title,
           body,
-          category,
+          articleCategory,
           username,
         });
         setNewArticle(response.data);
@@ -69,7 +70,7 @@ const WritingContainer = ({ history }) => {
     <Writing
       title={title}
       body={body}
-      category={category}
+      category={articleCategory}
       loading={loading}
       categories={categories}
       handleChange={handleChange}

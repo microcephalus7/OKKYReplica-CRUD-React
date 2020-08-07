@@ -1,5 +1,10 @@
 {
-  "categories": ["Free", "QnA", "Tech", "Jobs"],
+  "categories": [
+    "Free",
+    "QnA",
+    "Tech",
+    "Jobs"
+  ],
   "users": [
     {
       "username": "hou1",
@@ -27,7 +32,6 @@
       "category": "QnA",
       "id": "d8i0ZO3"
     },
-
     {
       "title": "dasfdasf",
       "body": "dafdsafsadf",
@@ -316,6 +320,13 @@
       "body": "ㅇㅇㅇㅇ",
       "category": "Free",
       "id": "_woLyZW"
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "body": "ㅇㅁㄹㅇㄴㄹ",
+      "category": "Jobs",
+      "username": "호우",
+      "id": "T58oldT"
     }
   ],
   "comments": [

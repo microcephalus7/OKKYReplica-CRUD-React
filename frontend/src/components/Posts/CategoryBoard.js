@@ -102,7 +102,7 @@ const CategoryBoard = ({ category, articles, loading }) => {
         <div className="boardWriting">
           <MdEdit />
           <span>
-            <Link to="/writing">New Article</Link>
+            <Link to={`/writing/${category}`}>New Article</Link>
           </span>
         </div>
       </div>

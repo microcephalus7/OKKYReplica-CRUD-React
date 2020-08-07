@@ -46,7 +46,7 @@ const SideNavWrapper = styled.div`
     }
     button {
       padding: 5px;
-      height: 29px;
+      height: 28px;
       width: 35px;
       background: none;
       outline: none;
