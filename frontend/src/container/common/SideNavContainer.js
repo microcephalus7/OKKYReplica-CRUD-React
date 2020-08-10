@@ -7,7 +7,7 @@ import AuthContext from "../../context/auth";
 
 const SideNavContainer = () => {
   const { state, actions } = useContext(AuthContext);
-
+  const { setUserInfo, setAuth, setAuthError } = actions;
   const [loading, resolved, error] = usePromise(() => {
     return Axios.get("/categories");
   }, []);
@@ -19,13 +19,17 @@ const SideNavContainer = () => {
     error(error);
   }
   const categories = resolved.data;
-
+  const authLogOut = () => {
+    setUserInfo(null);
+    setAuth(false);
+    localStorage.removeItem("userInfo"); // localStorage 에서 userInfo 제거
+  };
   return (
     <SideNav
       categories={categories}
       loading={loading}
       state={state}
-      state={state}
+      authLogOut={authLogOut}
     />
   );
 };

@@ -69,9 +69,13 @@ const SideNavWrapper = styled.div`
       display: flex;
       align-items: center;
       vertical-align: ceter;
-      span {
+      .profileNick {
         margin-left: 4px;
         font-size: 0.9rem;
+      }
+      .logOut {
+        margin-left: 85px;
+        font-size: 0.6rem;
       }
     }
     .profileInner {
@@ -108,8 +112,8 @@ const SideNavWrapper = styled.div`
   }
 `;
 
-const SideNav = ({ categories, loading, state }) => {
-  const { userInfo, auth, authError } = state;
+const SideNav = ({ categories, loading, state, authLogOut }) => {
+  const { userInfo, auth } = state;
   if (loading) {
     return <SideNavWrapper>로딩 중</SideNavWrapper>;
   }
@@ -133,6 +137,9 @@ const SideNav = ({ categories, loading, state }) => {
           <div className="activeProfile">
             <MdFace />
             <span className="profileNick">{userInfo.username}</span>
+            <span className="logOut" onClick={() => authLogOut()}>
+              로그아웃
+            </span>
           </div>
         ) : (
           <>
