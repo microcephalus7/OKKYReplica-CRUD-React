@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeField, initializeForm } from "../../modules/auth";
 import { withRouter } from "react-router-dom";
 
-const LoginContainer = ({ history }) => {
+const RegisterContainer = ({ history }) => {
   const dispatch = useDispatch();
   const { form } = useSelector(({ auth }) => ({
-    form: auth.login,
+    form: auth.register,
   }));
-  const { id, password } = form;
+  const { id, password, nickname, passwordRepeat } = form;
   const handleChange = (e) => {
     const { value, name } = e.target;
     dispatch(
       changeField({
-        form: "login",
+        form: "register",
         key: name,
         value,
       })
@@ -24,18 +24,19 @@ const LoginContainer = ({ history }) => {
     e.preventDefault();
   };
   useEffect(() => {
-    dispatch(initializeForm("login"));
+    dispatch(initializeForm("register"));
   }, [dispatch]);
 
   return (
     <Auth
-      login
       id={id}
       password={password}
+      nickname={nickname}
+      passwordRepeat={passwordRepeat}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
     />
   );
 };
 
-export default withRouter(LoginContainer);
+export default withRouter(RegisterContainer);
