@@ -129,6 +129,9 @@ const CategoryBoard = ({
   if (!articles) {
     return null;
   }
+  if (!pageSet) {
+    return <BoardWrapper>로딩중</BoardWrapper>;
+  }
   return (
     <BoardWrapper>
       <div className="boardNavigation">
