@@ -13,7 +13,7 @@ const LoginContainer = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const { state, actions } = useContext(AuthContext);
   const { id, password } = loging;
-  const { userInfo, auth, authError } = state;
+  const { userInfo, auth } = state;
   const { setUserInfo, setAuth, setAuthError } = actions;
   const handleChange = (e) => {
     setLoging({ ...loging, [e.target.name]: [e.target.value] });
@@ -53,6 +53,7 @@ const LoginContainer = ({ history }) => {
       password={password}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
+      loading={loading}
     />
   );
 };

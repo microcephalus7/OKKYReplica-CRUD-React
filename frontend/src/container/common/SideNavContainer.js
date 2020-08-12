@@ -1,5 +1,4 @@
-import React, { useState, useContext } from "react";
-import { useEffect } from "react";
+import React, { useContext } from "react";
 import Axios from "axios";
 import SideNav from "../../components/common/SideNav";
 import usePromise from "../../lib/hooks/usePromise";
@@ -7,7 +6,7 @@ import AuthContext from "../../context/auth";
 
 const SideNavContainer = () => {
   const { state, actions } = useContext(AuthContext);
-  const { setUserInfo, setAuth, setAuthError } = actions;
+  const { setUserInfo, setAuth } = actions;
   const [loading, resolved, error] = usePromise(() => {
     return Axios.get("/categories");
   }, []);

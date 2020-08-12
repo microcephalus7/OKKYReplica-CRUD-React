@@ -23,7 +23,6 @@ const RegisterContainer = ({ history }) => {
     );
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
     if (!username || !nickname || !password || !passwordRepeat) {
       alert("아이디, 비밀번호 칸을 전부 채워주세요");
       return null;
