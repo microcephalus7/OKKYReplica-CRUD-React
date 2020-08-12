@@ -67,7 +67,7 @@ const LoginWrapper = styled.div`
 const Auth = ({
   login,
   handleSubmit,
-  id,
+  username,
   password,
   passwordRepeat,
   handleChange,
@@ -81,8 +81,8 @@ const Auth = ({
         <form className="innerAuth">
           <input
             placeholder="아이디"
-            name="id"
-            value={id}
+            name="username"
+            value={username}
             onChange={handleChange}
           />
           <input
