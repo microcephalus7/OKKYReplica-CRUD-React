@@ -7,12 +7,12 @@ import { withRouter } from "react-router-dom";
 
 const LoginContainer = ({ history }) => {
   const [loging, setLoging] = useState({
-    id: "",
+    username: "",
     password: "",
   });
   const [loading, setLoading] = useState(false);
   const { state, actions } = useContext(AuthContext);
-  const { id, password } = loging;
+  const { username, password } = loging;
   const { userInfo, auth } = state;
   const { setUserInfo, setAuth, setAuthError } = actions;
   const handleChange = (e) => {
@@ -29,14 +29,14 @@ const LoginContainer = ({ history }) => {
     }
   });
   const handleSubmit = () => {
-    if (!id || !password) {
+    if (!username || !password) {
       alert("아이디, 비밀번호 칸을 전부 채워주세요");
       return null;
     }
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await Axios.post(`/user/login`, { id, password });
+        const response = await Axios.post(`/users`, { username, password });
         setUserInfo(response.data);
         setAuth(true);
       } catch (e) {
@@ -49,7 +49,7 @@ const LoginContainer = ({ history }) => {
   return (
     <Auth
       login
-      id={id}
+      username={username}
       password={password}
       handleChange={handleChange}
       handleSubmit={handleSubmit}

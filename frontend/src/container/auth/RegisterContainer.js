@@ -7,14 +7,14 @@ import { withRouter } from "react-router-dom";
 
 const RegisterContainer = ({ history }) => {
   const [registering, setRegistering] = useState({
-    id: "",
+    username: "",
     nickname: "",
     password: "",
     passwordRepeat: "",
   });
   const [loading, setLoading] = useState(false);
   const { state, actions } = useContext(AuthContext);
-  const { id, nickname, password, passwordRepeat } = registering;
+  const { username, nickname, password, passwordRepeat } = registering;
   const { userInfo, auth } = state;
   const { setUserInfo, setAuth, setAuthError } = actions;
   const handleChange = (e) => {
@@ -31,7 +31,7 @@ const RegisterContainer = ({ history }) => {
     }
   });
   const handleSubmit = () => {
-    if (!id || !nickname || !password || !passwordRepeat) {
+    if (!username || !nickname || !password || !passwordRepeat) {
       alert("아이디, 비밀번호 칸을 전부 채워주세요");
       return null;
     }
@@ -43,7 +43,7 @@ const RegisterContainer = ({ history }) => {
       setLoading(true);
       try {
         const response = await Axios.post(`/user/register`, {
-          id,
+          username,
           nickname,
           password,
         });
@@ -57,7 +57,7 @@ const RegisterContainer = ({ history }) => {
   };
   return (
     <Auth
-      id={id}
+      username={username}
       nickname={nickname}
       password={password}
       passwordRepeat={passwordRepeat}
