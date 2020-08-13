@@ -5,7 +5,6 @@ import { all } from "redux-saga/effects";
 import authOnlyRedux from "./authOnlyRedux";
 
 const rootReducer = combineReducers({
-  auth,
   loading,
   authOnlyRedux,
 });

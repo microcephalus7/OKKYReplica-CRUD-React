@@ -26,28 +26,32 @@ const LoginContainer = ({ history }) => {
       })
     );
   };
-  const handleSubmit = () => {
+  useEffect(() => {
+    dispatch(initialize("login"));
+  }, [dispatch]);
+  const handleSubmit = (e) => {
+    if (!username || !password) {
+      alert("빈 부분을 채워주세요");
+    }
     const fetchData = async () => {
       try {
         const response = await axios.post(`/users`, { username, password });
         const data = response.data;
-        dispatch(login(data));
+        dispatch(login({ data }));
       } catch (error) {
         dispatch(loginError(error));
       }
     };
     fetchData();
   };
-  useEffect(() => {
-    dispatch(initialize("login"));
-  }, [dispatch]);
+
   return (
     <Auth
       login
       username={username}
       password={password}
       handleChange={handleChange}
-      hadnleSubmit={handleSubmit}
+      handleSubmit={handleSubmit}
     />
   );
 };

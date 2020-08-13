@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const CHANGE_FIELD = "authOnly/CHANGE_FIELD";
 const INITIALIZE = "authOnly/INITIALIZE";
 const REGISTER = "authOnly/REGISTER";
@@ -5,29 +7,31 @@ const LOGIN = "authOnly/LOGIN";
 const LOGIN_FAILURE = "authOnly/LOGIN_FAILURE";
 const REGISTER_FAILURE = "authOnly/REGISTER_FAILURE";
 
-export const changeField = ({ form, key, value }) => {
-  return {
-    type: CHANGE_FIELD,
-    form,
-    key,
-    value,
-  };
-};
+export const changeField = ({ form, key, value }) => ({
+  type: CHANGE_FIELD,
+  form,
+  key,
+  value,
+});
 export const initialize = ({ form }) => ({
   type: INITIALIZE,
   form,
 });
 
-export const register = ({ data }) => ({
-  type: REGISTER,
-  data,
-});
-
-export const login = ({ data }) => ({
+export const register = (data) => ({
   type: LOGIN,
   data,
 });
-export const loginError = ({ error }) => ({
+export const registerError = (error) => ({
+  type: LOGIN_FAILURE,
+  error,
+});
+
+export const login = (data) => ({
+  type: LOGIN,
+  data,
+});
+export const loginError = (error) => ({
   type: LOGIN_FAILURE,
   error,
 });
@@ -52,7 +56,7 @@ function authOnly(state = initialState, action) {
       return {
         ...state,
         [action.form]: {
-          ...[action.form],
+          ...state[action.form],
           [action.key]: action.value,
         },
       };
