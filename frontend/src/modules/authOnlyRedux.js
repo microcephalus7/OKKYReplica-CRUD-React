@@ -43,7 +43,7 @@ const initialState = {
   register: {
     username: "",
     password: "",
-    passwordConfirm: "",
+    passwordRepeat: "",
     nickname: "",
   },
   auth: null,

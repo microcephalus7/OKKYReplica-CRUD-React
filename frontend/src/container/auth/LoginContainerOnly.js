@@ -29,15 +29,17 @@ const LoginContainer = ({ history }) => {
   useEffect(() => {
     dispatch(initialize("login"));
   }, [dispatch]);
-  const handleSubmit = (e) => {
+  const handleSubmit = () => {
     if (!username || !password) {
       alert("빈 부분을 채워주세요");
+      return null;
     }
+
     const fetchData = async () => {
       try {
         const response = await axios.post(`/users`, { username, password });
         const data = response.data;
-        dispatch(login({ data }));
+        dispatch(login(data));
       } catch (error) {
         dispatch(loginError(error));
       }

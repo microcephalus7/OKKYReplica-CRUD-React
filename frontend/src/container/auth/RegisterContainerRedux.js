@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import Auth from "../../components/auth/Auth";
 import { useDispatch, useSelector } from "react-redux";
-import { changeField, initializeForm, register } from "../../modules/auth";
+import {
+  changeField,
+  register,
+  initialize,
+  loginError,
+} from "../../modules/authOnlyRedux";
 import { withRouter } from "react-router-dom";
+import axios from "axios";
 
-const RegisterContainer = ({ history }) => {
+const LoginContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { form, auth, authError } = useSelector(({ auth }) => ({
-    form: auth.register,
-    auth: auth.auth,
-    authError: auth.authError,
+  const { form } = useSelector(({ authOnlyRedux }) => ({
+    form: authOnlyRedux.register,
   }));
-  const { username, password, nickname, passwordRepeat } = form;
+  const { username, password, passwordRepeat, nickname } = form;
   const handleChange = (e) => {
     const { value, name } = e.target;
     dispatch(
@@ -22,41 +26,44 @@ const RegisterContainer = ({ history }) => {
       })
     );
   };
+  useEffect(() => {
+    dispatch(initialize("register"));
+  }, [dispatch]);
   const handleSubmit = () => {
-    if (!username || !nickname || !password || !passwordRepeat) {
-      alert("아이디, 비밀번호 칸을 전부 채워주세요");
+    if (!username || !password || !nickname || !passwordRepeat) {
+      alert("빈 부분을 채워주세요");
       return null;
     }
     if (password !== passwordRepeat) {
-      alert("비빌번호가 일치하지 않습니다");
+      alert("아이디가 일치하지 않습니다");
       return null;
     }
-    dispatch(register({ username, nickname, password }));
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`/users`, {
+          username,
+          password,
+          nickname,
+        });
+        const data = response.data;
+        dispatch(register(data));
+      } catch (error) {
+        dispatch(loginError(error));
+      }
+    };
+    fetchData();
   };
-  useEffect(() => {
-    dispatch(initializeForm("register"));
-  }, [dispatch]);
-  useEffect(() => {
-    if (authError) {
-      console.log("오류 발생");
-      console.log(authError);
-      return;
-    }
-    if (auth) {
-      console.log("회원가입 성공");
-      console.log(auth);
-    }
-  }, [auth, authError]);
+
   return (
     <Auth
       username={username}
       password={password}
-      nickname={nickname}
       passwordRepeat={passwordRepeat}
+      nickname={nickname}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
     />
   );
 };
 
-export default withRouter(RegisterContainer);
+export default withRouter(LoginContainer);
