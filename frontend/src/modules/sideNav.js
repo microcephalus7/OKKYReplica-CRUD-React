@@ -41,3 +41,4 @@ function sideNav(state = initialState, action) {
       return state;
   }
 }
+export default sideNav;
