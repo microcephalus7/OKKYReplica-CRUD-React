@@ -3,7 +3,7 @@ import auth, { authSaga } from "./auth";
 import loading from "./loading";
 import { all } from "redux-saga/effects";
 import authOnlyRedux from "./authOnlyRedux";
-import user from "./auth";
+import user from "./user";
 
 const rootReducer = combineReducers({
   user,

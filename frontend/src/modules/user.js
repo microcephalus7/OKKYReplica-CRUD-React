@@ -4,7 +4,7 @@ const USER_CHECK_SUCCESS = "user/USER_CHECK_SUCCESS";
 const USER_CHECK_FAILURE = "user/USER_CHECK_FAILURE";
 const LOGOUT = "user/LOGOUT";
 
-export const userSet = ({ info }) => ({
+export const userSet = (info) => ({
   type: USER_SET,
   info,
 });
@@ -28,7 +28,7 @@ export const logOut = () => ({
 });
 
 const initialState = {
-  user: null,
+  userInfo: null,
   checkError: null,
   loading: false,
 };
@@ -38,7 +38,7 @@ function user(state = initialState, action) {
     case USER_SET:
       return {
         ...state,
-        user: action.info,
+        userInfo: action.info,
       };
     case USER_CHECK:
       return {
