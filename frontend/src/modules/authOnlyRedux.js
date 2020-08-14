@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const CHANGE_FIELD = "authOnly/CHANGE_FIELD";
 const INITIALIZE = "authOnly/INITIALIZE";
 const REGISTER = "authOnly/REGISTER";
