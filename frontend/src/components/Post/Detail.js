@@ -258,12 +258,12 @@ const Detail = ({
   loading,
   visible,
   setVisible,
-  handleDelete,
-  handleUpdate,
-  handleChange,
+  articleDelete,
+  articleUpdate,
+  articleChange,
   comments,
   body,
-  handleSubmit,
+  commentSubmit,
   state,
 }) => {
   const { auth, userInfo } = state;
@@ -318,8 +318,8 @@ const Detail = ({
                   </div>
                 </div>{" "}
                 <div className="optionHandle">
-                  <div onClick={handleDelete}>글 삭제</div>
-                  <div onClick={handleUpdate}>글 수정</div>
+                  <div onClick={articleDelete}>글 삭제</div>
+                  <div onClick={articleUpdate}>글 수정</div>
                 </div>
               </>
             ) : null}
@@ -335,7 +335,7 @@ const Detail = ({
             <div className="comment"> 댓글이 없습니다.</div>
           ) : (
             comments.map((com) => (
-              <div className="comment">
+              <div className="comment" key={com.id}>
                 <div className="commentBody">
                   <Profile username={com.username} />
                   <div className="body" key={com.id}>
@@ -363,12 +363,12 @@ const Detail = ({
                   <textarea
                     placeholder="댓글 쓰기"
                     value={body}
-                    onChange={handleChange}
+                    onChange={articleChange}
                   />
                 </div>
               </div>
               <div className="commentSubmit">
-                <button className="submit" onClick={handleSubmit}>
+                <button className="submit" onClick={commentSubmit}>
                   등록
                 </button>
               </div>

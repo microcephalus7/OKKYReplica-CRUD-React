@@ -20,6 +20,7 @@ const DetailContainer = ({ match, history }) => {
   const [visible, setVisible] = useState(false);
   const [updateComment, setUpdateComment] = useState({
     body: "",
+    id: "",
   });
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +39,7 @@ const DetailContainer = ({ match, history }) => {
     };
     fetchData();
   }, [postId, newComment]);
-  const handleSubmit = () => {
+  const commentSubmit = () => {
     const fetchData = async () => {
       try {
         const response = await Axios.post(`/comments`, {
@@ -53,10 +54,38 @@ const DetailContainer = ({ match, history }) => {
     };
     fetchData();
   };
-  const handleChange = (e) => {
+  const newCommentSet = (key) => {
+    setNewComment(comments[key]);
+  };
+  const commentUpdate = () => {
+    const fetchData = async () => {
+      try {
+        const { body, id } = updateComment;
+        const response = await Axios.patch(`/comments/${id}`, { body });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+  };
+  const commentDelete = (key) => {
+    const fetchData = async () => {
+      try {
+        const response = await Axios.delete(`/comments/${key}`);
+      } catch (e) {}
+    };
+    fetchData();
+  };
+  const commentChange = (e) => {
+    setNewComment({
+      ...newComment,
+      body: e.target.value,
+    });
+  };
+  const articleChange = (e) => {
     setComment({ ...comment, body: e.target.value });
   };
-  const handleDelete = () => {
+  const articleDelete = () => {
     const fetchData = async () => {
       try {
         const response = await Axios.delete(`/articles/${postId}`);
@@ -67,7 +96,7 @@ const DetailContainer = ({ match, history }) => {
     fetchData();
     history.push(`/`);
   };
-  const handleUpdate = () => {
+  const articleUpdate = () => {
     history.push(`/update/${postId}`);
   };
 
@@ -77,10 +106,10 @@ const DetailContainer = ({ match, history }) => {
       loading={loading}
       visible={visible}
       setVisible={setVisible}
-      handleDelete={handleDelete}
-      handleUpdate={handleUpdate}
-      handleSubmit={handleSubmit}
-      handleChange={handleChange}
+      handleDelete={articleDelete}
+      handleUpdate={articleUpdate}
+      handleSubmit={commentSubmit}
+      handleChange={articleChange}
       comments={comments}
       body={body}
       state={state}
