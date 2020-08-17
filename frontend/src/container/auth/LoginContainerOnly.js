@@ -13,9 +13,9 @@ import axios from "axios";
 
 const LoginContainer = ({ history }) => {
   const dispatch = useDispatch();
-  const { form, userInfo } = useSelector(({ authOnlyRedux, user }) => ({
+  const { form, user } = useSelector(({ authOnlyRedux, user }) => ({
     form: authOnlyRedux.login,
-    userInfo: user.userInfo,
+    user: user.userInfo,
   }));
   const { username, password } = form;
   const handleChange = (e) => {
@@ -29,11 +29,16 @@ const LoginContainer = ({ history }) => {
     );
   };
   useEffect(() => {
-    if (userInfo) {
+    if (user) {
       history.push("/");
+      try {
+        localStorage.setItem("user", JSON.stringify(user));
+      } catch (e) {
+        console.log("로컬 저장소가 작동하지 않습니다");
+      }
     }
     dispatch(initialize("login"));
-  }, [dispatch, history, userInfo]);
+  }, [dispatch, history, user]);
   const handleSubmit = () => {
     if (!username || !password) {
       alert("빈 부분을 채워주세요");

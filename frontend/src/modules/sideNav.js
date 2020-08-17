@@ -31,11 +31,13 @@ function sideNav(state = initialState, action) {
       return {
         ...state,
         categories: action.data,
+        loading: false,
       };
     case SET_SIDENAV_FAILURE:
       return {
         ...state,
         cateError: action.error,
+        loading: false,
       };
     default:
       return state;

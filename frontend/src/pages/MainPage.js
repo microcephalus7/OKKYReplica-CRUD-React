@@ -1,5 +1,5 @@
 import React from "react";
-import SideNavContainer from "../container/common/SideNavContainer";
+import SideNavContainer from "../container/common/SideNavContainerOnly";
 import MainContainer from "../container/main/MainContainer";
 
 const MainPage = () => {

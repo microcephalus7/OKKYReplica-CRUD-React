@@ -59,7 +59,7 @@ function user(state = initialState, action) {
     case LOGOUT:
       return {
         ...state,
-        user: null,
+        userInfo: null,
       };
     default:
       return state;

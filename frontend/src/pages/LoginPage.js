@@ -1,6 +1,6 @@
 import React from "react";
 import LoginContainer from "../container/auth/LoginContainerOnly";
-import SideNavContainer from "../container/common/SideNavContainer";
+import SideNavContainer from "../container/common/SideNavContainerOnly";
 const LoginPage = () => {
   return (
     <>
