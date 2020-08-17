@@ -31,7 +31,7 @@ const LoginContainer = ({ history }) => {
   useEffect(() => {
     if (user) {
       history.push("/");
-      try {
+     w try {
         localStorage.setItem("user", JSON.stringify(user));
       } catch (e) {
         console.log("로컬 저장소가 작동하지 않습니다");

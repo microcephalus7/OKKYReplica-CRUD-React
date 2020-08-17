@@ -156,11 +156,32 @@ const DetailWrapper = styled.div`
       padding-top: 8px;
       padding-left: 12px;
       background: #ffffff;
-      .commentBody {
-        font-size: 0.9rem;
-        padding-top: 10px;
-        min-height: 70px;
+      .comment {
+        min-height: 180px;
+        display: flex;
+        background: #ffffff;
         border-bottom: #dddddd solid 0.3px;
+        .commentBody {
+          width: 620px;
+          display: flex;
+          flex-direction: column;
+          .body {
+            margin-top: 10px;
+          }
+        }
+        .commentUpdate {
+          width: 110px;
+          border-left: #dddddd solid 0.3px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-end;
+
+          div {
+            cursor: pointer;
+            margin-bottom: 5px;
+          }
+        }
       }
     }
     .commentWriting {
@@ -211,7 +232,7 @@ const DetailWrapper = styled.div`
 
       .commentSubmit {
         background: #ffffff;
-        width: 80px;
+        width: 110px;
         display: flex;
         align-items: flex-end;
         justify-content: center;
@@ -274,7 +295,7 @@ const Detail = ({
           </div>
           <div className="boardInfo">
             <MdChatBubble />
-            <span>{!article.comment ? 0 : article.comment.length}</span>
+            <span>{!comments ? 0 : comments.length}</span>
           </div>
         </div>
         <div className="boardInner">
@@ -311,22 +332,28 @@ const Detail = ({
         </div>
         <div className="commentList">
           {!comments ? (
-            <div className="commentBody"> 댓글이 없습니다.</div>
+            <div className="comment"> 댓글이 없습니다.</div>
           ) : (
             comments.map((com) => (
-              <>
-                <Profile username={com.username} />
-                <div className="commentBody" key={com.id}>
-                  {com.body}
+              <div className="comment">
+                <div className="commentBody">
+                  <Profile username={com.username} />
+                  <div className="body" key={com.id}>
+                    {com.body}
+                  </div>
                 </div>
-              </>
+
+                <div className="commentUpdate">
+                  <div>글 수정</div>
+                  <div>글 삭제</div>
+                </div>
+              </div>
             ))
           )}
         </div>
         <div className="commentWriting">
           {auth ? (
             <>
-              {" "}
               <div className="WritingWrapper">
                 <div className="commentProfile">
                   <MdFace />
@@ -339,7 +366,7 @@ const Detail = ({
                     onChange={handleChange}
                   />
                 </div>
-              </div>{" "}
+              </div>
               <div className="commentSubmit">
                 <button className="submit" onClick={handleSubmit}>
                   등록

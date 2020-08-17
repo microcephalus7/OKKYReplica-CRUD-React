@@ -12,12 +12,15 @@ const DetailContainer = ({ match, history }) => {
   const { state } = useContext(AuthContext);
   const [comment, setComment] = useState({
     body: "",
-    username: "",
-    articleId: state.userInfo.id,
+    username: state.userInfo.id,
+    articleId: postId,
   });
   const { body, username, articleId } = comment;
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [updateComment, setUpdateComment] = useState({
+    body: "",
+  });
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);

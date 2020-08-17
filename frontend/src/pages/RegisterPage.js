@@ -1,6 +1,6 @@
 import React from "react";
-import SideNavContainer from "../container/common/SideNavContainerOnly";
-import RegisterContainer from "../container/auth/RegisterContainerRedux";
+import SideNavContainer from "../container/common/SideNavContainer";
+import RegisterContainer from "../container/auth/RegisterContainer";
 
 const RegisterPage = () => {
   return (
