@@ -12,7 +12,7 @@ const DetailContainer = ({ match, history }) => {
   const { state } = useContext(AuthContext);
   const [comment, setComment] = useState({
     body: "",
-    username: state.userInfo.id,
+    username: state.userInfo.username,
     articleId: postId,
   });
   const { body, username, articleId } = comment;
@@ -22,6 +22,8 @@ const DetailContainer = ({ match, history }) => {
     body: "",
     id: "",
   });
+
+  const [updateInput, setUpdateInput] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -55,7 +57,8 @@ const DetailContainer = ({ match, history }) => {
     fetchData();
   };
   const newCommentSet = (key) => {
-    setNewComment(comments[key]);
+    setUpdateComment(comments[key]);
+    setUpdateInput(true);
   };
   const commentUpdate = () => {
     const fetchData = async () => {
@@ -106,13 +109,16 @@ const DetailContainer = ({ match, history }) => {
       loading={loading}
       visible={visible}
       setVisible={setVisible}
-      handleDelete={articleDelete}
-      handleUpdate={articleUpdate}
-      handleSubmit={commentSubmit}
-      handleChange={articleChange}
+      articleDelete={articleDelete}
+      articleUpdate={articleUpdate}
+      commentSubmit={commentSubmit}
+      articleChange={articleChange}
       comments={comments}
       body={body}
       state={state}
+      updateInput={updateInput}
+      updateComment={updateComment}
+      newCommentSet={newCommentSet}
     />
   );
 };

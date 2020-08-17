@@ -265,6 +265,9 @@ const Detail = ({
   body,
   commentSubmit,
   state,
+  updateInput,
+  updateComment,
+  newCommentSet,
 }) => {
   const { auth, userInfo } = state;
   if (loading) {
@@ -290,7 +293,7 @@ const Detail = ({
         <div className="boardProfile">
           <MdFace />
           <div className="profileDetail">
-            <span className="profileId">{article.userId}</span>
+            <span className="profileId">{article.username}</span>
             <span className="date">2020/07/10</span>
           </div>
           <div className="boardInfo">
@@ -304,7 +307,7 @@ const Detail = ({
             <div className="boardSubscribe">{article.body}</div>
           </div>
           <div className="boardOption">
-            {article.userId === userInfo ? (
+            {article.username === userInfo.username ? (
               <>
                 <div className="optionWrapper">
                   <div className="option">
@@ -316,7 +319,7 @@ const Detail = ({
                       onMouseOut={() => setVisible(false)}
                     />
                   </div>
-                </div>{" "}
+                </div>
                 <div className="optionHandle">
                   <div onClick={articleDelete}>글 삭제</div>
                   <div onClick={articleUpdate}>글 수정</div>
@@ -338,15 +341,24 @@ const Detail = ({
               <div className="comment" key={com.id}>
                 <div className="commentBody">
                   <Profile username={com.username} />
-                  <div className="body" key={com.id}>
-                    {com.body}
+                  {updateInput ? (
+                    <textarea
+                      placeholder="댓글 쓰기"
+                      value={updateComment.body}
+                      onChange={articleChange}
+                    />
+                  ) : (
+                    <div className="body">{com.body}</div>
+                  )}
+                </div>
+                {userInfo.username === com.username ? (
+                  <div className="commentUpdate">
+                    <div onClick={newCommentSet(com.id)}>글 수정</div>
+                    <div>글 삭제</div>
                   </div>
-                </div>
-
-                <div className="commentUpdate">
-                  <div>글 수정</div>
-                  <div>글 삭제</div>
-                </div>
+                ) : (
+                  <div className="commentUpdate"></div>
+                )}
               </div>
             ))
           )}

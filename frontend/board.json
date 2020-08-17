@@ -530,6 +530,20 @@
       "category": "QnA",
       "username": "호우",
       "id": "iNxroDJ"
+    },
+    {
+      "title": "1234",
+      "body": "1234",
+      "category": "Free",
+      "username": "호우",
+      "id": "PZi5LLf"
+    },
+    {
+      "title": "1234",
+      "body": "1234",
+      "category": "Free",
+      "username": "호우",
+      "id": "NdHMlMu"
     }
   ],
   "comments": [
@@ -700,6 +714,24 @@
       "username": "hou123",
       "articleId": "qOkYceI",
       "id": "o7r09ig"
+    },
+    {
+      "body": "1234",
+      "username": "hou123",
+      "articleId": "NdHMlMu",
+      "id": "fYRyEKl"
+    },
+    {
+      "body": "1234",
+      "username": "hou123",
+      "articleId": "NdHMlMu",
+      "id": "VjIOtmq"
+    },
+    {
+      "body": "1234",
+      "username": "호우",
+      "articleId": "qOkYceI",
+      "id": "acPaoBT"
     }
   ]
 }
