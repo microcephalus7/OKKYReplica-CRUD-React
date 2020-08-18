@@ -5,25 +5,26 @@ import { withRouter } from "react-router-dom";
 import AuthContext from "../../context/auth";
 
 const DetailContainer = ({ match, history }) => {
+  // 파라미터
   const { postId } = match.params;
+  // 게시글
   const [article, setArticle] = useState(null);
+  // 댓글
   const [comments, setComments] = useState(null);
-  const [newComment, setNewComment] = useState(null);
+  // 로딩
+  const [loading, setLoading] = useState(false);
+  // 전역 변수(user 관련)
   const { state } = useContext(AuthContext);
+  // 댓글 입력
   const [comment, setComment] = useState({
     body: "",
     username: state.userInfo.username,
     articleId: postId,
   });
-  const { body, username, articleId } = comment;
-  const [loading, setLoading] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [updateComment, setUpdateComment] = useState({
-    body: "",
-    id: "",
-  });
+  // 댓글 입력 시 return 값
+  const [newComment, setNewComment] = useState(null);
 
-  const [updateInput, setUpdateInput] = useState(false);
+  // 렌더링, 리렌더링 라이프 사이클 Hooks
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -41,9 +42,31 @@ const DetailContainer = ({ match, history }) => {
     };
     fetchData();
   }, [postId, newComment]);
+
+  // 게시글 관련 로직
+  const articleUpdate = () => {
+    history.push(`/update/${postId}`);
+  };
+
+  const articleDelete = () => {
+    const fetchData = async () => {
+      try {
+        const response = await Axios.delete(`/articles/${postId}`);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchData();
+    history.push(`/`);
+  };
+  // 댓글 관련 로직
+  const commentChange = (e) => {
+    setComment({ ...comment, body: e.target.value });
+  };
   const commentSubmit = () => {
     const fetchData = async () => {
       try {
+        const { body, username, articleId } = comment;
         const response = await Axios.post(`/comments`, {
           body,
           username,
@@ -56,69 +79,18 @@ const DetailContainer = ({ match, history }) => {
     };
     fetchData();
   };
-  const newCommentSet = (key) => {
-    setUpdateComment(comments[key]);
-    setUpdateInput(true);
-  };
-  const commentUpdate = () => {
-    const fetchData = async () => {
-      try {
-        const { body, id } = updateComment;
-        const response = await Axios.patch(`/comments/${id}`, { body });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchData();
-  };
-  const commentDelete = (key) => {
-    const fetchData = async () => {
-      try {
-        const response = await Axios.delete(`/comments/${key}`);
-      } catch (e) {}
-    };
-    fetchData();
-  };
-  const commentChange = (e) => {
-    setNewComment({
-      ...newComment,
-      body: e.target.value,
-    });
-  };
-  const articleChange = (e) => {
-    setComment({ ...comment, body: e.target.value });
-  };
-  const articleDelete = () => {
-    const fetchData = async () => {
-      try {
-        const response = await Axios.delete(`/articles/${postId}`);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchData();
-    history.push(`/`);
-  };
-  const articleUpdate = () => {
-    history.push(`/update/${postId}`);
-  };
 
   return (
     <Detail
       article={article}
-      loading={loading}
-      visible={visible}
-      setVisible={setVisible}
-      articleDelete={articleDelete}
-      articleUpdate={articleUpdate}
-      commentSubmit={commentSubmit}
-      articleChange={articleChange}
       comments={comments}
-      body={body}
+      loading={loading}
       state={state}
-      updateInput={updateInput}
-      updateComment={updateComment}
-      newCommentSet={newCommentSet}
+      comment={comment}
+      articleUpdate={articleUpdate}
+      articleDelete={articleDelete}
+      commentChange={commentChange}
+      commentSubmit={commentSubmit}
     />
   );
 };

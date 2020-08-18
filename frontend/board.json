@@ -470,12 +470,6 @@
       "id": "T58oldT"
     },
     {
-      "category": "Free",
-      "userId": "hou123",
-      "username": "hou",
-      "id": "RX-2W4j"
-    },
-    {
       "title": "dddd",
       "body": "ddddd",
       "articleCategory": "Free",
@@ -544,6 +538,13 @@
       "category": "Free",
       "username": "호우",
       "id": "NdHMlMu"
+    },
+    {
+      "title": "1234",
+      "body": "1234",
+      "category": "Free",
+      "username": "호우",
+      "id": "gqyh9gn"
     }
   ],
   "comments": [
@@ -572,60 +573,6 @@
       "arricleId": "1"
     },
     {
-      "body": "ㅇㅁㄻㅇㄴㄹ",
-      "username": "",
-      "articleId": "1",
-      "id": "bg6qgpY"
-    },
-    {
-      "body": "ㅇㅇㅇㅇㅇ",
-      "username": "",
-      "articleId": "1",
-      "id": "w09b4U5"
-    },
-    {
-      "body": "ㅇㅇㅇ",
-      "username": "",
-      "articleId": "1",
-      "id": "arjJ4Lh"
-    },
-    {
-      "body": "ㅇㅇㅇ",
-      "username": "",
-      "articleId": "1",
-      "id": "ZuG6PJy"
-    },
-    {
-      "body": "ㅇㅁㄹㄴㅇㅁㄹ",
-      "username": "",
-      "articleId": "1",
-      "id": "NdLkWcj"
-    },
-    {
-      "body": "ㅇㄹㅇㄹ",
-      "username": "",
-      "articleId": "6",
-      "id": "TArY8pZ"
-    },
-    {
-      "body": "ㅇㅇㅇ",
-      "username": "",
-      "articleId": "1",
-      "id": "KgiLdWk"
-    },
-    {
-      "body": "ㄹㄹ",
-      "username": "",
-      "articleId": "1",
-      "id": "Gw8l478"
-    },
-    {
-      "body": "ㅇㅇㅇㅇ",
-      "username": "",
-      "articleId": "1",
-      "id": "quhLSk8"
-    },
-    {
       "body": "ㅇㅇㅇ",
       "username": "",
       "articleId": "_woLyZW",
@@ -638,18 +585,6 @@
       "id": "82aDV9i"
     },
     {
-      "body": "ㅇㅇㅇㅇㅇ",
-      "username": "",
-      "articleId": "5",
-      "id": "wrjBFlA"
-    },
-    {
-      "body": "ㅇㅇㅇㅇ",
-      "username": "",
-      "articleId": "DVDllRQ",
-      "id": "TScTQhn"
-    },
-    {
       "body": "ㅇㅇㅇ",
       "username": "",
       "articleId": "qOkYceI",
@@ -660,12 +595,6 @@
       "username": "",
       "articleId": "qOkYceI",
       "id": "NlL6plb"
-    },
-    {
-      "body": "ㅇㅇㅇ",
-      "username": "",
-      "articleId": "4Vp3Mce",
-      "id": "-cahJZJ"
     },
     {
       "body": "ㅇㅇㅇ",
@@ -684,30 +613,6 @@
       "username": "",
       "articleId": "-Ya3gDU",
       "id": "-mtYAFt"
-    },
-    {
-      "body": "2134",
-      "username": "",
-      "articleId": "hou123",
-      "id": "-OGm8gO"
-    },
-    {
-      "body": "1234",
-      "username": "",
-      "articleId": "hou123",
-      "id": "liSTLEB"
-    },
-    {
-      "body": "2134",
-      "username": "",
-      "articleId": "hou123",
-      "id": "pQQ_8GA"
-    },
-    {
-      "body": "1234",
-      "username": "",
-      "articleId": "hou123",
-      "id": "6CbrWHW"
     },
     {
       "body": "1234",
@@ -730,8 +635,14 @@
     {
       "body": "1234",
       "username": "호우",
-      "articleId": "qOkYceI",
-      "id": "acPaoBT"
+      "articleId": "gqyh9gn",
+      "id": "rMuXuTo"
+    },
+    {
+      "body": "1234",
+      "username": "호우",
+      "articleId": "gqyh9gn",
+      "id": "nUMrjdY"
     }
   ]
 }

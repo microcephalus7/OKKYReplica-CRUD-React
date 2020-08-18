@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MdEdit, MdChatBubble, MdFace, MdSettings } from "react-icons/md";
 import Profile from "../common/Profile";
 import { Link } from "react-router-dom";
+import CommentContainer from "../../container/Post/CommentContainer";
 
 const DetailWrapper = styled.div`
   display: block;
@@ -156,33 +157,6 @@ const DetailWrapper = styled.div`
       padding-top: 8px;
       padding-left: 12px;
       background: #ffffff;
-      .comment {
-        min-height: 180px;
-        display: flex;
-        background: #ffffff;
-        border-bottom: #dddddd solid 0.3px;
-        .commentBody {
-          width: 620px;
-          display: flex;
-          flex-direction: column;
-          .body {
-            margin-top: 10px;
-          }
-        }
-        .commentUpdate {
-          width: 110px;
-          border-left: #dddddd solid 0.3px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-end;
-
-          div {
-            cursor: pointer;
-            margin-bottom: 5px;
-          }
-        }
-      }
     }
     .commentWriting {
       height: 120px;
@@ -255,19 +229,14 @@ const DetailWrapper = styled.div`
 `;
 const Detail = ({
   article,
-  loading,
-  visible,
-  setVisible,
-  articleDelete,
-  articleUpdate,
-  articleChange,
   comments,
-  body,
-  commentSubmit,
+  loading,
   state,
-  updateInput,
-  updateComment,
-  newCommentSet,
+  comment,
+  articleUpdate,
+  articleDelete,
+  commentChange,
+  commentSubmit,
 }) => {
   const { auth, userInfo } = state;
   if (loading) {
@@ -311,13 +280,7 @@ const Detail = ({
               <>
                 <div className="optionWrapper">
                   <div className="option">
-                    {visible ? (
-                      <div className="optionBox">게시물 설정</div>
-                    ) : null}
-                    <MdSettings
-                      onMouseOver={() => setVisible(true)}
-                      onMouseOut={() => setVisible(false)}
-                    />
+                    <MdSettings />
                   </div>
                 </div>
                 <div className="optionHandle">
@@ -337,30 +300,7 @@ const Detail = ({
           {!comments ? (
             <div className="comment"> 댓글이 없습니다.</div>
           ) : (
-            comments.map((com) => (
-              <div className="comment" key={com.id}>
-                <div className="commentBody">
-                  <Profile username={com.username} />
-                  {updateInput ? (
-                    <textarea
-                      placeholder="댓글 쓰기"
-                      value={updateComment.body}
-                      onChange={articleChange}
-                    />
-                  ) : (
-                    <div className="body">{com.body}</div>
-                  )}
-                </div>
-                {userInfo.username === com.username ? (
-                  <div className="commentUpdate">
-                    <div onClick={newCommentSet(com.id)}>글 수정</div>
-                    <div>글 삭제</div>
-                  </div>
-                ) : (
-                  <div className="commentUpdate"></div>
-                )}
-              </div>
-            ))
+            comments.map((com) => <CommentContainer com={com} />)
           )}
         </div>
         <div className="commentWriting">
@@ -374,15 +314,15 @@ const Detail = ({
                 <div className="commentInput">
                   <textarea
                     placeholder="댓글 쓰기"
-                    value={body}
-                    onChange={articleChange}
+                    value={comment.body}
+                    onChange={commentChange}
                   />
                 </div>
               </div>
               <div className="commentSubmit">
-                <button className="submit" onClick={commentSubmit}>
+                <div className="submit" onClick={commentSubmit}>
                   등록
-                </button>
+                </div>
               </div>
             </>
           ) : (
