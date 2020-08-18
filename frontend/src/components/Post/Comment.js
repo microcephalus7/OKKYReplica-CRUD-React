@@ -38,6 +38,7 @@ const Comment = ({
   updateInput,
   updateComment,
   updateCommentChange,
+  updateCommentSubmit,
   updateCommentSettting,
   commentDelete,
 }) => {
@@ -61,17 +62,24 @@ const Comment = ({
           )}
         </div>
         {userInfo.username === com.username ? (
-          <div className="commentUpdate">
-            <div
-              onClick={() => {
-                setUpdateInput(true);
-                updateCommentSettting(com.id);
-              }}
-            >
-              댓글 수정
+          updateInput ? (
+            <div className="commentUpdate">
+              <div onClick={updateCommentSubmit}>수정 완료</div>
+              <div onClick={() => commentDelete(com.id)}>수정 취소</div>
             </div>
-            <div onClick={() => commentDelete(com.id)}>댓글 삭제</div>
-          </div>
+          ) : (
+            <div className="commentUpdate">
+              <div
+                onClick={() => {
+                  setUpdateInput(true);
+                  updateCommentSettting(com.id);
+                }}
+              >
+                댓글 수정
+              </div>
+              <div onClick={() => commentDelete(com.id)}>댓글 삭제</div>
+            </div>
+          )
         ) : (
           <div className="commentUpdate"></div>
         )}
