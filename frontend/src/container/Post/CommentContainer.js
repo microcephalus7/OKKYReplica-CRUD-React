@@ -17,11 +17,16 @@ const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
 
   // 업데이트 시 textArea 세팅
   const updateCommentSettting = () => {
+    setUpdateInput(true);
     setUpdateComment({
       ...updateComment,
       body: com.body,
       id: com.id,
     });
+  };
+  const updateCommentCancel = () => {
+    setUpdateInput(false);
+    setUpdateComment(updateComment);
   };
   // 커멘트 업데이트 시 state 변화
   const updateCommentChange = (e) => {
@@ -71,6 +76,7 @@ const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
       commentDelete={commentDelete}
       com={com}
       state={state}
+      updateCommentCancel={updateCommentCancel}
     />
   );
 };
