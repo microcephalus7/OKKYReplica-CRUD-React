@@ -237,6 +237,8 @@ const Detail = ({
   articleDelete,
   commentChange,
   commentSubmit,
+  setNewUpdateComment,
+  setDeleteComment,
 }) => {
   const { auth, userInfo } = state;
   if (loading) {
@@ -300,7 +302,13 @@ const Detail = ({
           {!comments ? (
             <div className="comment"> 댓글이 없습니다.</div>
           ) : (
-            comments.map((com) => <CommentContainer com={com} />)
+            comments.map((com) => (
+              <CommentContainer
+                com={com}
+                setNewUpdateComment={setNewUpdateComment}
+                setDeleteComment={setDeleteComment}
+              />
+            ))
           )}
         </div>
         <div className="commentWriting">

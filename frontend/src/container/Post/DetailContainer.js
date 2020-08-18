@@ -23,6 +23,10 @@ const DetailContainer = ({ match, history }) => {
   });
   // 댓글 입력 시 return 값
   const [newComment, setNewComment] = useState(null);
+  // 댓글 업데이트 시 return 값
+  const [newUpdateComment, setNewUpdateComment] = useState(null);
+  // 댓글 삭제시 참고 state
+  const [deleteComment, setDeleteComment] = useState(null);
 
   // 렌더링, 리렌더링 라이프 사이클 Hooks
   useEffect(() => {
@@ -41,7 +45,7 @@ const DetailContainer = ({ match, history }) => {
       setLoading(false);
     };
     fetchData();
-  }, [postId, newComment]);
+  }, [postId, newComment, newUpdateComment, deleteComment]);
 
   // 게시글 관련 로직
   const articleUpdate = () => {
@@ -64,6 +68,11 @@ const DetailContainer = ({ match, history }) => {
     setComment({ ...comment, body: e.target.value });
   };
   const commentSubmit = () => {
+    const { body } = comment;
+    if (!body) {
+      alert("댓글을 입력해 주세요!");
+      return null;
+    }
     const fetchData = async () => {
       try {
         const { body, username, articleId } = comment;
@@ -91,6 +100,8 @@ const DetailContainer = ({ match, history }) => {
       articleDelete={articleDelete}
       commentChange={commentChange}
       commentSubmit={commentSubmit}
+      setNewUpdateComment={setNewUpdateComment}
+      setDeleteComment={setDeleteComment}
     />
   );
 };
