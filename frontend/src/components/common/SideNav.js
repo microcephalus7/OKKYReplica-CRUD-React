@@ -3,12 +3,12 @@ import styled from "styled-components";
 import palette from "../../lib/styles/palette";
 import {
   MdSearch,
-  MdList,
   MdPermIdentity,
   MdPowerSettingsNew,
   MdFace,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
+import SideNavTile from "./SideNavTile";
 
 const SideNavWrapper = styled.div`
   position: fixed;
@@ -160,12 +160,7 @@ const SideNav = ({ categories, loading, state, authLogOut }) => {
       </div>
       <div className="cateList">
         {categories.map((category) => (
-          <div key={category}>
-            <MdList />
-            <span>
-              <Link to={`/category/${category}`}>{category}</Link>
-            </span>
-          </div>
+          <SideNavTile category={category} />
         ))}
       </div>
     </SideNavWrapper>

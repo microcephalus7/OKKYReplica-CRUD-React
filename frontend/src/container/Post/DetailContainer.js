@@ -21,6 +21,7 @@ const DetailContainer = ({ match, history }) => {
     username: state.userInfo.username,
     articleId: postId,
   });
+  const [error, setError] = useState(null);
   // 댓글 입력 시 return 값
   const [newComment, setNewComment] = useState(null);
   // 댓글 업데이트 시 return 값
@@ -56,6 +57,7 @@ const DetailContainer = ({ match, history }) => {
     const fetchData = async () => {
       try {
         const response = await Axios.delete(`/articles/${postId}`);
+        setError(response);
       } catch (e) {
         console.log(e);
       }
@@ -91,6 +93,7 @@ const DetailContainer = ({ match, history }) => {
 
   return (
     <Detail
+      error={error}
       article={article}
       comments={comments}
       loading={loading}

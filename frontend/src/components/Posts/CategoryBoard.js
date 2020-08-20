@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { MdEdit, MdChatBubble, MdFace } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 import { Link } from "react-router-dom";
+import BoardItem from "./BoardItem";
 const BoardWrapper = styled.div`
   display: block;
   margin: 30px 20px;
@@ -106,6 +107,7 @@ const BoardWrapper = styled.div`
       justify-content: center;
       font-weight: 500;
       color: #337ab7;
+      cursor: pointer;
     }
     .active {
       color: white;
@@ -145,21 +147,7 @@ const CategoryBoard = ({
       </div>
       <div className="boardList">
         {articles.map((article) => (
-          <div className="boardItem" key={article.id}>
-            <span className="itemTitle">
-              <Link to={`/detail/${article.id}`}>{article.title}</Link>
-            </span>
-            <div className="itemOverview">
-              <div className="overviewItem">
-                <MdChatBubble />
-                <span>{article.comment ? article.comment.length : 0}</span>
-              </div>
-            </div>
-            <div className="itemProfile">
-              <MdFace />
-              <span className="profileId">{article.username}</span>
-            </div>
-          </div>
+          <BoardItem article={article} />
         ))}
       </div>
       <div className="pagination">
