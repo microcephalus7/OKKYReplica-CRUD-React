@@ -13,6 +13,7 @@ const WritingContainer = ({ history, match }) => {
     body: "",
     category: boardCategory,
     username: userInfo.username,
+    originalId: null,
   });
   const [categories, setCategories] = useState(null);
   const { title, body, category, username } = article;
@@ -38,7 +39,9 @@ const WritingContainer = ({ history, match }) => {
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-  }, [history, newArticle, auth]);
+    if (article.originalId) {
+    }
+  }, [history, newArticle, auth, article]);
   const handleChange = (e) => {
     const nextState = { ...article, [e.target.name]: e.target.value };
     setArticle(nextState);

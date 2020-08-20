@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Writing from "../../components/Write/Writing";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
+import AuthContext from "../../context/auth";
 
 const UpdateContainer = ({ match, history }) => {
   const { postId } = match.params;
@@ -15,8 +16,14 @@ const UpdateContainer = ({ match, history }) => {
   const { title, body, category } = article;
   const [loading, setLoading] = useState(false);
   const [newArticle, setNewArticle] = useState(null);
+  const { state } = useContext(AuthContext);
+  const { auth } = state;
 
   useEffect(() => {
+    if (!auth) {
+      alert("로그인을 해야 글 쓰기가 가능합니다");
+      history.push("/");
+    }
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -38,7 +45,7 @@ const UpdateContainer = ({ match, history }) => {
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-  }, [newArticle, history, postId]);
+  }, [newArticle, history, postId, auth]);
   const handleChange = (e) => {
     const nextState = { ...article, [e.target.name]: e.target.value };
     setArticle(nextState);
