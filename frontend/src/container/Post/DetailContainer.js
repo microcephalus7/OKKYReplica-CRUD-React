@@ -3,6 +3,7 @@ import Detail from "../../components/Post/Detail";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import AuthContext from "../../context/auth";
+import WriteContext from "../../context/write";
 
 const DetailContainer = ({ match, history }) => {
   // 파라미터
@@ -14,11 +15,15 @@ const DetailContainer = ({ match, history }) => {
   // 로딩
   const [loading, setLoading] = useState(false);
   // 전역 변수(user 관련)
-  const { state } = useContext(AuthContext);
+  const { state: AuthState } = useContext(AuthContext);
+  // 전역 변수 (update 관련)
+  const { actions: WriteActions } = useContext(WriteContext);
+
+  const { setUpdateInfo } = WriteActions;
   // 댓글 입력
   const [comment, setComment] = useState({
     body: "",
-    username: state.userInfo.username,
+    username: AuthState.userInfo.username,
     articleId: postId,
   });
   const [error, setError] = useState(null);
@@ -50,6 +55,7 @@ const DetailContainer = ({ match, history }) => {
 
   // 게시글 관련 로직
   const articleUpdate = () => {
+    setUpdateInfo({ originalId: postId });
     history.push(`/update/${postId}`);
   };
 
@@ -99,7 +105,7 @@ const DetailContainer = ({ match, history }) => {
       article={article}
       comments={comments}
       loading={loading}
-      state={state}
+      state={AuthState}
       comment={comment}
       articleUpdate={articleUpdate}
       articleDelete={articleDelete}
