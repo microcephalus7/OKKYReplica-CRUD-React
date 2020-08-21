@@ -4,38 +4,40 @@ import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
-
-const UpdateContainer = ({ match, history }) => {
-  const { postId } = match.params;
-  const [article, setArticle] = useState({
-    title: "",
-    body: "",
-    category: "Free",
-  });
-  const [categories, setCategories] = useState(null);
-  const { title, body, category } = article;
+import WriteContext from "../../context/write";
+import CategoriesContext from "../../context/categories";
+const WriteContainer = ({ history, match }) => {
+  // 파라미터 값
+  const { boardCategory } = match.params;
+  // user 전역 값
+  const { state: authState } = useContext(AuthContext);
+  const { userInfo, auth } = authState;
+  // Write 전역 값
+  const { state: writeState, actions: WriteActions } = useContext(WriteContext);
+  const { article, newArticle } = writeState;
+  const { title, body, category, username } = article;
+  const { setArticle, setNewArticle } = WriteActions;
+  // Categories 전역 값
+  const { state: CategoriesState, actions: CategoriesActions } = useContext(
+    CategoriesContext
+  );
+  const { categories } = CategoriesState;
+  const { setCategories } = CategoriesActions;
+  // 로딩 값
   const [loading, setLoading] = useState(false);
-  const [newArticle, setNewArticle] = useState(null);
-  const { state } = useContext(AuthContext);
-  const { auth } = state;
 
   useEffect(() => {
     if (!auth) {
       alert("로그인을 해야 글 쓰기가 가능합니다");
       history.push("/");
     }
+    // 페이지 접속 시 Categories 설정
+    setArticle({ ...newArticle, category: boardCategory });
     const fetchData = async () => {
       setLoading(true);
       try {
-        const responseArticle = await Axios.get(`/articles/${postId}`);
-        const responseCategories = await Axios.get("/categories");
-        setCategories(responseCategories.data);
-        const { title, body, category } = responseArticle.data;
-        setArticle({
-          title: title,
-          body: body,
-          category: category,
-        });
+        const response = await Axios.get("/categories");
+        setCategories(response.data);
       } catch (e) {
         console.log(e);
       }
@@ -45,7 +47,8 @@ const UpdateContainer = ({ match, history }) => {
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-  }, [newArticle, history, postId, auth]);
+  }, [history, newArticle, auth]);
+
   const handleChange = (e) => {
     setArticle({ ...article, [e.target.name]: e.target.value });
   };
@@ -54,21 +57,21 @@ const UpdateContainer = ({ match, history }) => {
       alert("빈 부분을 채워주세요!");
       return null;
     }
+
     const fetchData = async () => {
-      setLoading(true);
       try {
         const date = Date.now();
-        const response = await Axios.patch(`/articles/${postId}`, {
+        const response = await Axios.post(`/articles`, {
           title,
           body,
           category,
+          username,
           date,
         });
         setNewArticle(response.data);
       } catch (e) {
         console.log(e);
       }
-      setLoading(false);
     };
     fetchData();
   };
@@ -85,9 +88,8 @@ const UpdateContainer = ({ match, history }) => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
-      update
     />
   );
 };
 
-export default withRouter(UpdateContainer);
+export default withRouter(WriteContainer);

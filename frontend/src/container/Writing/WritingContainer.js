@@ -5,18 +5,24 @@ import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
 const WritingContainer = ({ history, match }) => {
+  // 파라미터 값
   const { boardCategory } = match.params;
+  // user 전역 값
   const { state } = useContext(AuthContext);
   const { userInfo, auth } = state;
+  // 카테고리 값
+  const [categories, setCategories] = useState(null);
+  // article 값
   const [article, setArticle] = useState({
     title: "",
     body: "",
     category: boardCategory,
     username: userInfo.username,
   });
-  const [categories, setCategories] = useState(null);
   const { title, body, category, username } = article;
+  // 로딩 값
   const [loading, setLoading] = useState(false);
+  // 글 작성 시 return 값
   const [newArticle, setNewArticle] = useState(null);
 
   useEffect(() => {

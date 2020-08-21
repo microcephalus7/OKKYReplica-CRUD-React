@@ -1,5 +1,5 @@
-import React, { createContext, useState } from "react";
-
+import React, { createContext, useState, useContext } from "react";
+import AuthContext from "../../context/auth";
 const WriteContext = createContext({
   state: {
     title: "",
@@ -7,6 +7,7 @@ const WriteContext = createContext({
     category: "Free",
     username: null,
     originalId: null,
+    newArticle: null,
   },
   actions: {
     setUserInfo: () => {},
@@ -16,14 +17,24 @@ const WriteContext = createContext({
 });
 
 const WriteProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState({ username: "호우", id: "hou123" });
-  const [auth, setAuth] = useState(true);
-  const [authError, setAuthError] = useState(false);
+  const { state } = useContext(AuthContext);
+  const { userInfo } = state;
+  // 글 쓰기 정보
+  const [article, setArticle] = useState({
+    title: "",
+    body: "",
+    category: null,
+    username: userInfo.username,
+    originalId: null,
+  });
+  // 글 작성 시 return 됨
+  const [newArticle, setNewArticle] = useState(null);
 
   const value = {
-    state: { userInfo, auth, authError },
-    actions: { setUserInfo, setAuth, setAuthError },
+    state: { article, newArticle },
+    actions: { setArticle, setNewArticle },
   };
+
   return (
     <WriteContext.Provider value={value}>{children}</WriteContext.Provider>
   );
