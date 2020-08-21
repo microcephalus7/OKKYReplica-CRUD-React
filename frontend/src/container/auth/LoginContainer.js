@@ -19,7 +19,7 @@ const LoginContainer = ({ history }) => {
     setLoging({ ...loging, [e.target.name]: [e.target.value] });
   };
   useEffect(() => {
-    if (!!auth) {
+    if (auth) {
       history.push("/");
       try {
         localStorage.setItem("user", JSON.stringify(userInfo));
@@ -45,7 +45,6 @@ const LoginContainer = ({ history }) => {
     };
     fetchData();
   };
-
   return (
     <Auth
       login

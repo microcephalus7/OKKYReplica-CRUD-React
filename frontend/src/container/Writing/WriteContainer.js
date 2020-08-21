@@ -57,7 +57,6 @@ const WriteContainer = ({ history, match }) => {
       alert("빈 부분을 채워주세요!");
       return null;
     }
-
     const fetchData = async () => {
       try {
         const date = Date.now();
