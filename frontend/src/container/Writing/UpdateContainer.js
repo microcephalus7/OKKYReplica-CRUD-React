@@ -58,10 +58,12 @@ const UpdateContainer = ({ match, history }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
+        const date = Date.now();
         const response = await Axios.patch(`/articles/${postId}`, {
           title,
           body,
           category,
+          date,
         });
         setNewArticle(response.data);
       } catch (e) {

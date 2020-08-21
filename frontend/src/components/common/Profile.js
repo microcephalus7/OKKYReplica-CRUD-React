@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { MdFace } from "react-icons/md";
 
 const ProfileWrapper = styled.div`
@@ -7,22 +7,35 @@ const ProfileWrapper = styled.div`
   align-items: center;
   vertical-align: middle;
   height: 50px;
+  ${(props) =>
+    props.detail &&
+    css`
+      flex: 1;
+    `}
   svg {
     font-size: 3rem;
   }
-  .profileInfo {
+  .info {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+
     .profileNick {
       font-size: 0.9rem;
     }
+    .date {
+      color: #e2d5cc;
+      font-size: 0.75rem;
+    }
   }
 `;
-const Profile = ({ username }) => {
+const Profile = ({ username, date, detail }) => {
   return (
-    <ProfileWrapper>
+    <ProfileWrapper detail={detail}>
       <MdFace />
-      <span className="profileNick">{username}</span>
+      <div className="info">
+        <span className="profileNick">{username}</span>
+        <span className="date">{new Date(date).toLocaleDateString()}</span>
+      </div>
     </ProfileWrapper>
   );
 };

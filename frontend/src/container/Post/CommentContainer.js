@@ -44,8 +44,9 @@ const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
     }
     const fetchData = async () => {
       try {
+        const date = Date.now();
         const { body, id } = updateComment;
-        const response = await Axios.patch(`/comments/${id}`, { body });
+        const response = await Axios.patch(`/comments/${id}`, { body, date });
         setNewUpdateComment(response.data);
       } catch (e) {
         console.log(e);

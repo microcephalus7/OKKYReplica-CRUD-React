@@ -78,10 +78,12 @@ const DetailContainer = ({ match, history }) => {
     const fetchData = async () => {
       try {
         const { body, username, articleId } = comment;
+        const date = Date.now();
         const response = await Axios.post(`/comments`, {
           body,
           username,
           articleId,
+          date,
         });
         setNewComment(response.data);
       } catch (e) {

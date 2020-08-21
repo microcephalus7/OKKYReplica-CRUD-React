@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { MdEdit, MdChatBubble, MdFace, MdSettings } from "react-icons/md";
-import Profile from "../common/Profile";
 import { Link } from "react-router-dom";
 import CommentContainer from "../../container/Post/CommentContainer";
+import Profile from "../common/Profile";
 
 const DetailWrapper = styled.div`
   display: block;
@@ -227,6 +227,7 @@ const DetailWrapper = styled.div`
     }
   }
 `;
+
 const Detail = ({
   article,
   comments,
@@ -262,11 +263,7 @@ const Detail = ({
       </div>
       <div className="boardDetail">
         <div className="boardProfile">
-          <MdFace />
-          <div className="profileDetail">
-            <span className="profileId">{article.username}</span>
-            <span className="date">2020/07/10</span>
-          </div>
+          <Profile username={article.username} date={article.date} detail />
           <div className="boardInfo">
             <MdChatBubble />
             <span>{!comments ? 0 : comments.length}</span>

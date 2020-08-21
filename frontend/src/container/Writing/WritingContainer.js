@@ -13,7 +13,6 @@ const WritingContainer = ({ history, match }) => {
     body: "",
     category: boardCategory,
     username: userInfo.username,
-    originalId: null,
   });
   const [categories, setCategories] = useState(null);
   const { title, body, category, username } = article;
@@ -39,25 +38,26 @@ const WritingContainer = ({ history, match }) => {
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-    if (article.originalId) {
-    }
-  }, [history, newArticle, auth, article]);
+  }, [history, newArticle, auth]);
+
   const handleChange = (e) => {
-    const nextState = { ...article, [e.target.name]: e.target.value };
-    setArticle(nextState);
+    setArticle({ ...article, [e.target.name]: e.target.value });
   };
   const handleSubmit = () => {
     if (!title || !body || !category) {
       alert("빈 부분을 채워주세요!");
       return null;
     }
+
     const fetchData = async () => {
       try {
+        const date = Date.now();
         const response = await Axios.post(`/articles`, {
           title,
           body,
           category,
           username,
+          date,
         });
         setNewArticle(response.data);
       } catch (e) {

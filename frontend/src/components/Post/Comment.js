@@ -32,7 +32,6 @@ const CommentWrapper = styled.div`
   }
 `;
 const Comment = ({
-  setUpdateInput,
   com,
   state,
   updateInput,
@@ -51,7 +50,7 @@ const Comment = ({
     <CommentWrapper>
       <div className="comment" key={com.id}>
         <div className="commentBody">
-          <Profile username={com.username} />
+          <Profile username={com.username} date={com.date} />
           {updateInput ? (
             <textarea
               value={updateComment.body}
