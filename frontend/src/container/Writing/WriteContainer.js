@@ -4,15 +4,18 @@ import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
-
+import WriteContext from "../../context/auth";
+import { useRef } from "react";
 const WritingContainer = ({ history, match }) => {
   // 파라미터 값
-  const { boardCategory, boardId } = match.params;
+  const { boardCategory } = match.params;
 
   // user 전역 값
   const { state: authState } = useContext(AuthContext);
   const { userInfo, auth } = authState;
   // write 전역 값
+  const { state: writeState } = useRef(useContext(WriteContext));
+  const { updateInfo } = writeState;
 
   // 카테고리 값
   const [categories, setCategories] = useState(null);
@@ -46,21 +49,24 @@ const WritingContainer = ({ history, match }) => {
       setLoading(false);
     };
     fetchData();
-    const fetchArticle = async () => {
-      setLoading(true);
-      try {
-        const response = await Axios.get(`/articles/${boardId}`);
+    if (!!updateInfo) {
+      const fetchArticle = async () => {
+        setLoading(true);
+        try {
+          const response = await Axios.get(`/articles/${updateInfo}`);
 
-        setArticle(response.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchArticle();
+          setArticle(response.data);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      fetchArticle();
+    }
+
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-  }, [history, newArticle, auth, boardId]);
+  }, [history, newArticle, auth, updateInfo]);
 
   const handleChange = (e) => {
     setArticle({ ...article, [e.target.name]: e.target.value });
