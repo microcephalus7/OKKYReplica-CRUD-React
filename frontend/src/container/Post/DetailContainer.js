@@ -18,7 +18,6 @@ const DetailContainer = ({ match, history }) => {
   const { state: AuthState } = useContext(AuthContext);
   // 전역 변수 (update 관련)
   const { actions: WriteActions } = useContext(WriteContext);
-
   const { setUpdateInfo } = WriteActions;
   // 댓글 입력
   const [comment, setComment] = useState({
@@ -55,8 +54,8 @@ const DetailContainer = ({ match, history }) => {
 
   // 게시글 관련 로직
   const articleUpdate = () => {
-    setUpdateInfo({ originalId: postId });
-    history.push(`/update/${postId}`);
+    setUpdateInfo(postId);
+    history.push(`/writing/${article.category}/${postId}`);
   };
 
   const articleDelete = () => {

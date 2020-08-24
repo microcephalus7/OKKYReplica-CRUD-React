@@ -4,14 +4,16 @@ import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
-import WriteContext from "../../context/write";
 
 const WritingContainer = ({ history, match }) => {
   // 파라미터 값
-  const { boardCategory } = match.params;
+  const { boardCategory, boardId } = match.params;
+
   // user 전역 값
-  const { state } = useContext(AuthContext);
-  const { userInfo, auth } = state;
+  const { state: authState } = useContext(AuthContext);
+  const { userInfo, auth } = authState;
+  // write 전역 값
+
   // 카테고리 값
   const [categories, setCategories] = useState(null);
   // article 값
@@ -32,6 +34,7 @@ const WritingContainer = ({ history, match }) => {
       alert("로그인을 해야 글 쓰기가 가능합니다");
       history.push("/");
     }
+
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -43,10 +46,21 @@ const WritingContainer = ({ history, match }) => {
       setLoading(false);
     };
     fetchData();
+    const fetchArticle = async () => {
+      setLoading(true);
+      try {
+        const response = await Axios.get(`/articles/${boardId}`);
+
+        setArticle(response.data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchArticle();
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-  }, [history, newArticle, auth]);
+  }, [history, newArticle, auth, boardId]);
 
   const handleChange = (e) => {
     setArticle({ ...article, [e.target.name]: e.target.value });

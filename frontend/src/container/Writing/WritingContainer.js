@@ -7,6 +7,7 @@ import AuthContext from "../../context/auth";
 const WritingContainer = ({ history, match }) => {
   // 파라미터 값
   const { boardCategory } = match.params;
+
   // user 전역 값
   const { state } = useContext(AuthContext);
   const { userInfo, auth } = state;

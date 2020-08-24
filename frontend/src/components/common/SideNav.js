@@ -160,7 +160,7 @@ const SideNav = ({ categories, loading, state, authLogOut }) => {
       </div>
       <div className="cateList">
         {categories.map((category) => (
-          <SideNavTile category={category} />
+          <SideNavTile category={category} key={category} />
         ))}
       </div>
     </SideNavWrapper>

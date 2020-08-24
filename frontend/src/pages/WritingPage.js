@@ -1,6 +1,6 @@
 import React from "react";
 import SideNavContainer from "../container/common/SideNavContainer";
-import WritingContainer from "../container/Writing/WritingContainer";
+import WritingContainer from "../container/Writing/WriteContainer";
 
 const WritingPage = () => {
   return (

@@ -2,7 +2,7 @@ import React, { createContext, useState } from "react";
 
 const WriteContext = createContext({
   state: {
-    originalId: null,
+    updateInfo: null,
   },
   actions: {
     setUpdateInfo: () => {},
@@ -11,10 +11,7 @@ const WriteContext = createContext({
 
 const WriteProvider = ({ children }) => {
   // 글 쓰기 정보
-  const [updateInfo, setUpdateInfo] = useState({
-    originalId: null,
-  });
-  // 글 작성 시 return 됨
+  const [updateInfo, setUpdateInfo] = useState(null);
 
   const value = {
     state: { updateInfo },
