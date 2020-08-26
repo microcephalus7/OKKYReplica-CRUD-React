@@ -55,7 +55,7 @@ const DetailContainer = ({ match, history }) => {
   // 게시글 관련 로직
   const articleUpdate = () => {
     setUpdateInfo({ postId });
-    history.push(`/updating/${postId}`);
+    history.push(`/writing/${article.category}/${postId}`);
   };
 
   const articleDelete = () => {

@@ -15,7 +15,7 @@ const App = () => {
       <Route path="/detail/:postId" component={DetailPage} />
       <Route path="/category/:category" component={BoardPage} />
       <Route
-        path={["/writing/:boardCategory", "/updating/:postId"]}
+        path={["/writing/:boardCategory/:postId?"]}
         component={WritingPage}
       />
       <Route path="/login" component={LoginPage} />
