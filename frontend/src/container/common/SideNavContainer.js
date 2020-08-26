@@ -3,8 +3,9 @@ import Axios from "axios";
 import SideNav from "../../components/common/SideNav";
 import usePromise from "../../lib/hooks/usePromise";
 import AuthContext from "../../context/auth";
+import { withRouter } from "react-router-dom";
 
-const SideNavContainer = () => {
+const SideNavContainer = ({ history, match }) => {
   const { state, actions } = useContext(AuthContext);
   const { setUserInfo, setAuth } = actions;
   const [loading, resolved, error] = usePromise(() => {
@@ -17,6 +18,12 @@ const SideNavContainer = () => {
   if (error) {
     error(error);
   }
+  const handleReload = () => {
+    if (!match.params) {
+      Location.reload();
+    }
+    history.push("/");
+  };
   const categories = resolved.data;
   const authLogOut = () => {
     setUserInfo(null);
@@ -29,8 +36,9 @@ const SideNavContainer = () => {
       loading={loading}
       state={state}
       authLogOut={authLogOut}
+      handleReload={handleReload}
     />
   );
 };
 
-export default SideNavContainer;
+export default withRouter(SideNavContainer);

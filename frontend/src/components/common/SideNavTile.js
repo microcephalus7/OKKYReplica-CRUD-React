@@ -32,4 +32,4 @@ const SideNavTile = ({ category }) => {
   );
 };
 
-export default SideNavTile;
+export default React.memo(SideNavTile);

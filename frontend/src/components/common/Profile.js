@@ -34,10 +34,12 @@ const Profile = ({ username, date, detail }) => {
       <MdFace />
       <div className="info">
         <span className="profileNick">{username}</span>
-        <span className="date">{new Date(date).toLocaleDateString()}</span>
+        <span className="date">
+          {date ? new Date(date).toLocaleDateString() : "날짜 데이터 없음"}
+        </span>
       </div>
     </ProfileWrapper>
   );
 };
 
-export default Profile;
+export default React.memo(Profile);

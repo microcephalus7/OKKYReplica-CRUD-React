@@ -25,4 +25,4 @@ const BoardItem = ({ article }) => {
   );
 };
 
-export default BoardItem;
+export default React.memo(BoardItem);

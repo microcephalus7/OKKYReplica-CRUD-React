@@ -89,4 +89,4 @@ const Board = ({ articles, loading, categories }) => {
   );
 };
 
-export default Board;
+export default React.memo(Board);

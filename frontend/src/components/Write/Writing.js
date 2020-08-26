@@ -98,6 +98,7 @@ const Writing = ({
   categories,
   handleCancel,
   update,
+  postId,
 }) => {
   if (loading) {
     return <UpdatingWrapper>로딩 중</UpdatingWrapper>;
@@ -136,7 +137,7 @@ const Writing = ({
               취소
             </button>
             <div className="submit" onClick={handleSubmit}>
-              create
+              {postId ? "update" : "create"}
             </div>
           </div>
         </form>
@@ -145,4 +146,4 @@ const Writing = ({
   );
 };
 
-export default Writing;
+export default React.memo(Writing);

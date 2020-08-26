@@ -8,6 +8,7 @@ import {
   MdFace,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
+
 import SideNavTile from "./SideNavTile";
 
 const SideNavWrapper = styled.div`
@@ -112,7 +113,7 @@ const SideNavWrapper = styled.div`
   }
 `;
 
-const SideNav = ({ categories, loading, state, authLogOut }) => {
+const SideNav = ({ categories, loading, state, authLogOut, handleReload }) => {
   const { userInfo, auth } = state;
   if (loading) {
     return <SideNavWrapper>로딩 중</SideNavWrapper>;
@@ -123,9 +124,9 @@ const SideNav = ({ categories, loading, state, authLogOut }) => {
 
   return (
     <SideNavWrapper>
-      <Link to="/" className="logo">
+      <div className="logo" onClick={handleReload}>
         옼끼
-      </Link>
+      </div>
       <div className="search">
         <input placeholder="Google 검색" />
         <button>
@@ -167,4 +168,4 @@ const SideNav = ({ categories, loading, state, authLogOut }) => {
   );
 };
 
-export default SideNav;
+export default React.memo(SideNav);

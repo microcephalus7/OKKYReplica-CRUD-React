@@ -168,4 +168,4 @@ const CategoryBoard = ({
   );
 };
 
-export default CategoryBoard;
+export default React.memo(CategoryBoard);

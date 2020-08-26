@@ -11,4 +11,4 @@ const SettingHover = () => {
   return <SettingHoverWrapper>게시물 설정</SettingHoverWrapper>;
 };
 
-export default SettingHover;
+export default React.memo(SettingHover);

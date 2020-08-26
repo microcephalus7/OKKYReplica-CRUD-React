@@ -4,18 +4,15 @@ import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
-import WriteContext from "../../context/auth";
-import { useRef } from "react";
+
 const WritingContainer = ({ history, match }) => {
   // 파라미터 값
-  const { boardCategory } = match.params;
+  const { boardCategory, postId } = match.params;
 
   // user 전역 값
   const { state: authState } = useContext(AuthContext);
   const { userInfo, auth } = authState;
   // write 전역 값
-  const { state: writeState } = useRef(useContext(WriteContext));
-  const { updateInfo } = writeState;
 
   // 카테고리 값
   const [categories, setCategories] = useState(null);
@@ -49,24 +46,27 @@ const WritingContainer = ({ history, match }) => {
       setLoading(false);
     };
     fetchData();
-    if (!!updateInfo) {
-      const fetchArticle = async () => {
+    if (postId) {
+      const fetchData = async () => {
         setLoading(true);
         try {
-          const response = await Axios.get(`/articles/${updateInfo}`);
-
+          const response = await Axios.get(`/articles/${postId}`);
           setArticle(response.data);
         } catch (e) {
           console.log(e);
         }
       };
-      fetchArticle();
+      fetchData();
+      if (userInfo.username !== article.username) {
+        alert("본인의 계정의 글만 수정 가능합니다!");
+        history.goBack();
+      }
     }
 
     if (!!newArticle) {
       history.push(`/detail/${newArticle.id}`);
     }
-  }, [history, newArticle, auth, updateInfo]);
+  }, [history, newArticle, auth, postId, article.username, userInfo.username]);
 
   const handleChange = (e) => {
     setArticle({ ...article, [e.target.name]: e.target.value });
@@ -76,23 +76,42 @@ const WritingContainer = ({ history, match }) => {
       alert("빈 부분을 채워주세요!");
       return null;
     }
-
-    const fetchData = async () => {
-      try {
-        const date = Date.now();
-        const response = await Axios.post(`/articles`, {
-          title,
-          body,
-          category,
-          username,
-          date,
-        });
-        setNewArticle(response.data);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchData();
+    if (postId) {
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const date = Date.now();
+          const response = await Axios.patch(`/articles/${postId}`, {
+            title,
+            body,
+            category,
+            date,
+          });
+          setNewArticle(response.data);
+        } catch (e) {
+          console.log(e);
+        }
+        setLoading(false);
+      };
+      fetchData();
+    } else {
+      const fetchData = async () => {
+        try {
+          const date = Date.now();
+          const response = await Axios.post(`/articles`, {
+            title,
+            body,
+            category,
+            username,
+            date,
+          });
+          setNewArticle(response.data);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      fetchData();
+    }
   };
   const handleCancel = () => {
     history.goBack();
@@ -107,6 +126,7 @@ const WritingContainer = ({ history, match }) => {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
+      postId
     />
   );
 };
