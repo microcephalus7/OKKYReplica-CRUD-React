@@ -61,7 +61,7 @@ const Comment = ({
             <div className="body">{com.body}</div>
           )}
         </div>
-        {userInfo.username === com.username ? (
+        {userInfo && userInfo.username === com.username ? (
           updateInput ? (
             <div className="commentUpdate">
               <div onClick={updateCommentSubmit}>수정 완료</div>

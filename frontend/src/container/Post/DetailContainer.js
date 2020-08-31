@@ -16,13 +16,14 @@ const DetailContainer = ({ match, history }) => {
   const [loading, setLoading] = useState(false);
   // 전역 변수(user 관련)
   const { state: AuthState } = useContext(AuthContext);
+  const { userInfo } = AuthState;
   // 전역 변수 (update 관련)
   const { actions: WriteActions } = useContext(WriteContext);
   const { setUpdateInfo } = WriteActions;
   // 댓글 입력
   const [comment, setComment] = useState({
     body: "",
-    username: AuthState.userInfo.username,
+    username: null,
     articleId: postId,
   });
   const [error, setError] = useState(null);
@@ -50,7 +51,10 @@ const DetailContainer = ({ match, history }) => {
       setLoading(false);
     };
     fetchData();
-  }, [postId, newComment, newUpdateComment, deleteComment]);
+    if (userInfo) {
+      setComment({ ...comment, username: userInfo.username });
+    }
+  }, [postId, newComment, newUpdateComment, deleteComment, userInfo, comment]);
   // 이벤트 관련 로직
   // 게시글 관련 로직
   const articleUpdate = useCallback(() => {

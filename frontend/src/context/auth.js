@@ -10,8 +10,8 @@ const AuthContext = createContext({
 });
 
 const AuthProvider = ({ children }) => {
-  const [userInfo, setUserInfo] = useState({ username: "호우", id: "hou123" });
-  const [auth, setAuth] = useState(true);
+  const [userInfo, setUserInfo] = useState(null);
+  const [auth, setAuth] = useState(false);
   const [authError, setAuthError] = useState(false);
 
   const value = {

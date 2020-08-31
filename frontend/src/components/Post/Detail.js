@@ -275,7 +275,7 @@ const Detail = ({
             <div className="boardSubscribe">{article.body}</div>
           </div>
           <div className="boardOption">
-            {article.username === userInfo.username ? (
+            {userInfo && article.username === userInfo.username ? (
               <>
                 <div className="optionWrapper">
                   <div className="option">
