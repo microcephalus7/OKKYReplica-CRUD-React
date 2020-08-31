@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import Axios from "axios";
 import AuthContext from "../../context/auth";
 import { withRouter } from "react-router-dom";
+import { useCallback } from "react";
 
 const LoginContainer = ({ history }) => {
   const [loging, setLoging] = useState({
@@ -15,9 +16,7 @@ const LoginContainer = ({ history }) => {
   const { username, password } = loging;
   const { userInfo, auth } = state;
   const { setUserInfo, setAuth, setAuthError } = actions;
-  const handleChange = (e) => {
-    setLoging({ ...loging, [e.target.name]: [e.target.value] });
-  };
+  // 컴포넌트 시작시 실행
   useEffect(() => {
     if (auth) {
       history.push("/");
@@ -28,7 +27,15 @@ const LoginContainer = ({ history }) => {
       }
     }
   });
-  const handleSubmit = () => {
+  // 이벤트 관련 함수
+  const handleChange = useCallback(
+    (e) => {
+      setLoging({ ...loging, [e.target.name]: [e.target.value] });
+    },
+    [loging]
+  );
+
+  const handleSubmit = useCallback(() => {
     if (!username || !password) {
       alert("아이디, 비밀번호 칸을 전부 채워주세요");
       return null;
@@ -44,7 +51,7 @@ const LoginContainer = ({ history }) => {
       }
     };
     fetchData();
-  };
+  }, [password, setAuth, setAuthError, setUserInfo, username]);
   return (
     <Auth
       login

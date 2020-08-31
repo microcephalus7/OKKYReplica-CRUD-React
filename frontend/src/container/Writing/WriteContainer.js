@@ -4,6 +4,7 @@ import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import { useEffect } from "react";
 import AuthContext from "../../context/auth";
+import { useCallback } from "react";
 
 const WritingContainer = ({ history, match }) => {
   // 파라미터 값
@@ -12,7 +13,6 @@ const WritingContainer = ({ history, match }) => {
   // user 전역 값
   const { state: authState } = useContext(AuthContext);
   const { userInfo, auth } = authState;
-  // write 전역 값
 
   // 카테고리 값
   const [categories, setCategories] = useState(null);
@@ -68,10 +68,13 @@ const WritingContainer = ({ history, match }) => {
     }
   }, [history, newArticle, auth, postId, article.username, userInfo.username]);
 
-  const handleChange = (e) => {
-    setArticle({ ...article, [e.target.name]: e.target.value });
-  };
-  const handleSubmit = () => {
+  const handleChange = useCallback(
+    (e) => {
+      setArticle({ ...article, [e.target.name]: e.target.value });
+    },
+    [article]
+  );
+  const handleSubmit = useCallback(() => {
     if (!title || !body || !category) {
       alert("빈 부분을 채워주세요!");
       return null;
@@ -112,10 +115,10 @@ const WritingContainer = ({ history, match }) => {
       };
       fetchData();
     }
-  };
-  const handleCancel = () => {
+  }, [title, body, category, postId, username]);
+  const handleCancel = useCallback(() => {
     history.goBack();
-  };
+  }, [history]);
   return (
     <Writing
       title={title}

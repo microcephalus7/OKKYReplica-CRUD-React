@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import Detail from "../../components/Post/Detail";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
@@ -51,14 +51,14 @@ const DetailContainer = ({ match, history }) => {
     };
     fetchData();
   }, [postId, newComment, newUpdateComment, deleteComment]);
-
+  // 이벤트 관련 로직
   // 게시글 관련 로직
-  const articleUpdate = () => {
+  const articleUpdate = useCallback(() => {
     setUpdateInfo({ postId });
     history.push(`/writing/${article.category}/${postId}`);
-  };
+  }, [article, history, postId, setUpdateInfo]);
 
-  const articleDelete = () => {
+  const articleDelete = useCallback(() => {
     const fetchData = async () => {
       try {
         const response = await Axios.delete(`/articles/${postId}`);
@@ -69,12 +69,15 @@ const DetailContainer = ({ match, history }) => {
     };
     fetchData();
     history.push(`/`);
-  };
+  }, [history, postId]);
   // 댓글 관련 로직
-  const commentChange = (e) => {
-    setComment({ ...comment, body: e.target.value });
-  };
-  const commentSubmit = () => {
+  const commentChange = useCallback(
+    (e) => {
+      setComment({ ...comment, body: e.target.value });
+    },
+    [comment]
+  );
+  const commentSubmit = useCallback(() => {
     const { body } = comment;
     if (!body) {
       alert("댓글을 입력해 주세요!");
@@ -96,7 +99,7 @@ const DetailContainer = ({ match, history }) => {
       }
     };
     fetchData();
-  };
+  }, [comment]);
 
   return (
     <Detail

@@ -3,6 +3,7 @@ import Comment from "../../components/Post/Comment";
 import { useState } from "react";
 import Axios from "axios";
 import AuthContext from "../../context/auth";
+import { useCallback } from "react";
 const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
   // 댓글 업데이트 스위치
   const [updateInput, setUpdateInput] = useState(false);
@@ -15,28 +16,32 @@ const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
   // 전역 변수(user 관련)
   const { state } = useContext(AuthContext);
 
+  // 이벤트 관련 로직
   // 업데이트 시 textArea 세팅
-  const updateCommentSettting = () => {
+  const updateCommentSettting = useCallback(() => {
     setUpdateInput(true);
     setUpdateComment({
       ...updateComment,
       body: com.body,
       id: com.id,
     });
-  };
-  const updateCommentCancel = () => {
+  }, [com, updateComment]);
+  const updateCommentCancel = useCallback(() => {
     setUpdateInput(false);
     setUpdateComment(updateComment);
-  };
+  }, [updateComment]);
   // 커멘트 업데이트 시 state 변화
-  const updateCommentChange = (e) => {
-    setUpdateComment({
-      ...updateComment,
-      body: e.target.value,
-    });
-  };
+  const updateCommentChange = useCallback(
+    (e) => {
+      setUpdateComment({
+        ...updateComment,
+        body: e.target.value,
+      });
+    },
+    [updateComment]
+  );
   // 커멘트 업데이트 submit 로직
-  const updateCommentSubmit = (id) => {
+  const updateCommentSubmit = useCallback(() => {
     const { body } = updateComment;
     if (!body) {
       alert("댓글을 입력해주세요!");
@@ -53,19 +58,22 @@ const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
       }
     };
     fetchData();
-  };
+  }, [setNewUpdateComment, updateComment]);
   // 커멘트 딜리트 로직
-  const commentDelete = (key) => {
-    const fetchData = async () => {
-      try {
-        const response = await Axios.delete(`/comments/${key}`);
-        setDeleteComment(response);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchData();
-  };
+  const commentDelete = useCallback(
+    (key) => {
+      const fetchData = async () => {
+        try {
+          const response = await Axios.delete(`/comments/${key}`);
+          setDeleteComment(response);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      fetchData();
+    },
+    [setDeleteComment]
+  );
   return (
     <Comment
       updateInput={updateInput}
@@ -82,4 +90,4 @@ const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
   );
 };
 
-export default CommentContainer;
+export default React.memo(CommentContainer);

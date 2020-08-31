@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import Axios from "axios";
 import AuthContext from "../../context/auth";
 import { withRouter } from "react-router-dom";
+import { useCallback } from "react";
 
 const RegisterContainer = ({ history }) => {
   const [registering, setRegistering] = useState({
@@ -17,9 +18,8 @@ const RegisterContainer = ({ history }) => {
   const { username, nickname, password, passwordRepeat } = registering;
   const { userInfo, auth } = state;
   const { setUserInfo, setAuth, setAuthError } = actions;
-  const handleChange = (e) => {
-    setRegistering({ ...registering, [e.target.name]: [e.target.value] });
-  };
+
+  // 컴포넌트 불러올 떄 작업
   useEffect(() => {
     if (!!auth) {
       history.push("/");
@@ -30,7 +30,16 @@ const RegisterContainer = ({ history }) => {
       }
     }
   });
-  const handleSubmit = () => {
+
+  // 이벤트 관련 로직
+  const handleChange = useCallback(
+    (e) => {
+      setRegistering({ ...registering, [e.target.name]: [e.target.value] });
+    },
+    [registering]
+  );
+
+  const handleSubmit = useCallback(() => {
     if (!username || !nickname || !password || !passwordRepeat) {
       alert("아이디, 비밀번호 칸을 전부 채워주세요");
       return null;
@@ -54,7 +63,15 @@ const RegisterContainer = ({ history }) => {
       }
     };
     fetchData();
-  };
+  }, [
+    nickname,
+    passwordRepeat,
+    password,
+    setAuth,
+    setAuthError,
+    setUserInfo,
+    username,
+  ]);
   return (
     <Auth
       username={username}
