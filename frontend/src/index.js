@@ -9,31 +9,23 @@ import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import createSagaMiddleware from "redux-saga";
 import rootReducer, { rootSaga } from "./modules";
-import { userSet } from "./modules/user";
+import { AuthProvider } from "./context/auth";
+import Compose from "./compose.tsx";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 );
-function loadUser() {
-  try {
-    const user = localStorage.getItem("user");
-    if (!user) return;
-    store.dispatch(userSet(user));
-  } catch (e) {
-    console.log("로컬 스토리지가 작동하지 않습니다");
-  }
-}
 
 sagaMiddleware.run(rootSaga);
-loadUser();
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <BrowserRouter>
+      <Compose components={[AuthProvider, BrowserRouter]}>
         <App />
-      </BrowserRouter>
+      </Compose>
     </React.StrictMode>
   </Provider>,
   document.getElementById("root")
