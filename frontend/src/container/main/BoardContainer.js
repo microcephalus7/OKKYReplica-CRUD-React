@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import Board from "../../components/Main/Board";
-import usePromise from "../../lib/hooks/usePromise";
 
 const BoardContainer = ({ category }) => {
   // 게시물 state

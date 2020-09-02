@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import Comment from "../../components/Post/Comment";
 import { useState } from "react";
 import Axios from "axios";
 import AuthContext from "../../context/auth";
-import { useCallback } from "react";
+
 const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
   // 댓글 업데이트 스위치
   const [updateInput, setUpdateInput] = useState(false);
@@ -26,6 +26,7 @@ const CommentContainer = ({ com, setNewUpdateComment, setDeleteComment }) => {
       id: com.id,
     });
   }, [com, updateComment]);
+  // 업데이트 취소 시 로직
   const updateCommentCancel = useCallback(() => {
     setUpdateInput(false);
     setUpdateComment(updateComment);

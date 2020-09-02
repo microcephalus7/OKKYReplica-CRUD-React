@@ -3,7 +3,6 @@ import Detail from "../../components/Post/Detail";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import AuthContext from "../../context/auth";
-import WriteContext from "../../context/write";
 
 const DetailContainer = ({ match, history }) => {
   // 파라미터
@@ -15,17 +14,15 @@ const DetailContainer = ({ match, history }) => {
   // 로딩
   const [loading, setLoading] = useState(false);
   // 전역 변수(user 관련)
-  const { state: AuthState } = useContext(AuthContext);
-  const { userInfo } = AuthState;
-  // 전역 변수 (update 관련)
-  const { actions: WriteActions } = useContext(WriteContext);
-  const { setUpdateInfo } = WriteActions;
+  const { state } = useContext(AuthContext);
+  const { userInfo } = state;
   // 댓글 입력
   const [comment, setComment] = useState({
     body: "",
     username: null,
     articleId: postId,
   });
+
   const [error, setError] = useState(null);
   // 댓글 입력 시 return 값
   const [newComment, setNewComment] = useState(null);
@@ -51,16 +48,13 @@ const DetailContainer = ({ match, history }) => {
       setLoading(false);
     };
     fetchData();
-    if (userInfo) {
-      setComment({ ...comment, username: userInfo.username });
-    }
-  }, [postId, newComment, newUpdateComment, deleteComment, userInfo, comment]);
+  }, [postId, newComment, newUpdateComment, deleteComment, userInfo]);
+
   // 이벤트 관련 로직
   // 게시글 관련 로직
   const articleUpdate = useCallback(() => {
-    setUpdateInfo({ postId });
     history.push(`/writing/${article.category}/${postId}`);
-  }, [article, history, postId, setUpdateInfo]);
+  }, [article, history, postId]);
 
   const articleDelete = useCallback(() => {
     const fetchData = async () => {
@@ -74,6 +68,7 @@ const DetailContainer = ({ match, history }) => {
     fetchData();
     history.push(`/`);
   }, [history, postId]);
+
   // 댓글 관련 로직
   const commentChange = useCallback(
     (e) => {
@@ -89,6 +84,7 @@ const DetailContainer = ({ match, history }) => {
     }
     const fetchData = async () => {
       try {
+        setComment({ ...comment, username: userInfo.username });
         const { body, username, articleId } = comment;
         const date = Date.now();
         const response = await Axios.post(`/comments`, {
@@ -103,7 +99,8 @@ const DetailContainer = ({ match, history }) => {
       }
     };
     fetchData();
-  }, [comment]);
+    setComment({ ...comment, body: "" });
+  }, [comment, userInfo]);
 
   return (
     <Detail
@@ -111,7 +108,7 @@ const DetailContainer = ({ match, history }) => {
       article={article}
       comments={comments}
       loading={loading}
-      state={AuthState}
+      state={state}
       comment={comment}
       articleUpdate={articleUpdate}
       articleDelete={articleDelete}
