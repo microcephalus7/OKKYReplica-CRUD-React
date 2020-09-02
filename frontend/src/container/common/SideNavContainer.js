@@ -33,7 +33,7 @@ const SideNavContainer = ({ history }) => {
   const authLogOut = () => {
     setUserInfo(null);
     setAuth(false);
-    localStorage.removeItem("userInfo"); // localStorage 에서 userInfo 제거
+    localStorage.removeItem("user"); // localStorage 에서 userInfo 제거
   };
   return (
     <SideNav

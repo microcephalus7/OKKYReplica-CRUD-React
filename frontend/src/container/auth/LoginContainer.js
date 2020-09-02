@@ -14,14 +14,14 @@ const LoginContainer = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const { state, actions } = useContext(AuthContext);
   const { username, password } = loging;
-  const { userInfo, auth } = state;
+  const { userInfo: user, auth } = state;
   const { setUserInfo, setAuth, setAuthError } = actions;
   // 컴포넌트 시작시 실행
   useEffect(() => {
     if (auth) {
       history.push("/");
       try {
-        localStorage.setItem("user", JSON.stringify(userInfo));
+        localStorage.setItem("user", JSON.stringify(user));
       } catch (e) {
         console.log(e);
       }

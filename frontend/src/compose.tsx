@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function Compose(props: Props) {
+const Compose = (props: Props) => {
   const { components = [], children } = props;
 
   return (
@@ -15,4 +15,6 @@ export default function Compose(props: Props) {
       }, children)}
     </>
   );
-}
+};
+
+export default Compose;
