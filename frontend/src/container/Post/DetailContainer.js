@@ -3,7 +3,6 @@ import Detail from "../../components/Post/Detail";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import AuthContext from "../../context/auth";
-import { useRef } from "react";
 
 const DetailContainer = ({ match, history }) => {
   // 파라미터
@@ -15,15 +14,14 @@ const DetailContainer = ({ match, history }) => {
   // 로딩
   const [loading, setLoading] = useState(false);
   // 전역 변수(user 관련)
-  const { state } = useContext(AuthContext);
-  const { userInfo } = state;
-  const refUserInfo = useRef(userInfo);
+  const { state: AuthState } = useContext(AuthContext);
+
   // 댓글 입력
   const [comment, setComment] = useState({
     body: "",
-    username: null,
     articleId: postId,
   });
+  // username
 
   const [error, setError] = useState(null);
   // 댓글 입력 시 return 값
@@ -52,11 +50,10 @@ const DetailContainer = ({ match, history }) => {
     fetchData();
   }, [postId, newComment, newUpdateComment, deleteComment]);
 
-  // 이벤트 관련 로직
   // 게시글 관련 로직
   const articleUpdate = useCallback(() => {
     history.push(`/writing/${article.category}/${postId}`);
-  }, [article, history, postId]);
+  }, [history, postId, article]);
 
   const articleDelete = useCallback(() => {
     const fetchData = async () => {
@@ -70,7 +67,6 @@ const DetailContainer = ({ match, history }) => {
     fetchData();
     history.push(`/`);
   }, [history, postId]);
-
   // 댓글 관련 로직
   const commentChange = useCallback(
     (e) => {
@@ -86,7 +82,9 @@ const DetailContainer = ({ match, history }) => {
     }
     const fetchData = async () => {
       try {
-        const { body, username, articleId } = comment;
+        const { body, articleId } = comment;
+        const user = JSON.parse(localStorage.getItem("user"));
+        const username = user.username[0];
         const date = Date.now();
         const response = await Axios.post(`/comments`, {
           body,
@@ -100,7 +98,6 @@ const DetailContainer = ({ match, history }) => {
       }
     };
     fetchData();
-    setComment({ ...comment, body: "" });
   }, [comment]);
 
   return (
@@ -109,7 +106,7 @@ const DetailContainer = ({ match, history }) => {
       article={article}
       comments={comments}
       loading={loading}
-      state={state}
+      state={AuthState}
       comment={comment}
       articleUpdate={articleUpdate}
       articleDelete={articleDelete}
