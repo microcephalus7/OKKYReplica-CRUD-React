@@ -188,7 +188,6 @@ const DetailWrapper = styled.div`
           display: flex;
           height: 70px;
           align-items: flex-end;
-
           textarea {
             padding: 5px;
             margin-left: 4px;
@@ -203,7 +202,6 @@ const DetailWrapper = styled.div`
           }
         }
       }
-
       .commentSubmit {
         background: #ffffff;
         width: 110px;

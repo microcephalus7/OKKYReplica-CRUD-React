@@ -3,6 +3,7 @@ import Detail from "../../components/Post/Detail";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
 import AuthContext from "../../context/auth";
+import { useRef } from "react";
 
 const DetailContainer = ({ match, history }) => {
   // 파라미터
@@ -16,6 +17,7 @@ const DetailContainer = ({ match, history }) => {
   // 전역 변수(user 관련)
   const { state } = useContext(AuthContext);
   const { userInfo } = state;
+  const refUserInfo = useRef(userInfo);
   // 댓글 입력
   const [comment, setComment] = useState({
     body: "",
@@ -48,7 +50,7 @@ const DetailContainer = ({ match, history }) => {
       setLoading(false);
     };
     fetchData();
-  }, [postId, newComment, newUpdateComment, deleteComment, userInfo]);
+  }, [postId, newComment, newUpdateComment, deleteComment]);
 
   // 이벤트 관련 로직
   // 게시글 관련 로직
@@ -84,7 +86,6 @@ const DetailContainer = ({ match, history }) => {
     }
     const fetchData = async () => {
       try {
-        setComment({ ...comment, username: userInfo.username });
         const { body, username, articleId } = comment;
         const date = Date.now();
         const response = await Axios.post(`/comments`, {
@@ -100,7 +101,7 @@ const DetailContainer = ({ match, history }) => {
     };
     fetchData();
     setComment({ ...comment, body: "" });
-  }, [comment, userInfo]);
+  }, [comment]);
 
   return (
     <Detail

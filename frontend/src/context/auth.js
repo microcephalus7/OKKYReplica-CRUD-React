@@ -11,7 +11,7 @@ const AuthContext = createContext({
 
 const AuthProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(null);
   const [authError, setAuthError] = useState(false);
 
   const value = {
